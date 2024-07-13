@@ -65,6 +65,9 @@ if(isset($_POST["nomEntreprise"]) && isset($_POST["prenomFondateur"]) && isset($
         $requete->bindValue(":tempsLivraison", $_POST["tempsLivraison"]);
 
         $requete->execute();
+
+        header('Location: login.php');//AMINE
+        exit();
     }
 }
 
@@ -142,6 +145,15 @@ if(isset($_POST["nomEntreprise"]) && isset($_POST["prenomFondateur"]) && isset($
 
             <label for="descriptionEntreprise">Décrivez votre entreprise :</label>
             <input type="text" id="descriptionEntreprise" name="descriptionEntreprise" value="" class="form-control" required />
+
+            <label for="descriptionService">Décrivez le ou les services que vous offrez :</label>
+            <input type="text" id="descriptionService" name="descriptionService" value="" class="form-control" required />
+            
+            <label for="prixService"> Détaillez vos prix :</label>
+            <input type="text" id="prixService" name="prixService" value="" class="form-control" required />
+
+            <label for="tempsLivraison"> Indiquez votre temps de livraison :</label>
+            <input type="text" id="tempsLivraison" name="tempsLivraison" value="" class="form-control" required />
 
             <input type="submit" value="Créer le compte" class="form-control" />
         </form>
