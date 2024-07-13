@@ -10,10 +10,7 @@ $username = $nom = $prenom = $nomEntreprise = $numTelephone = $adresse = $heures
 if(isset($_POST["nomEntreprise"]) && isset($_POST["prenomFondateur"]) && isset($_POST["nomFondateur"])
 && isset($_POST["username"]) &&ISSET($_POST["courriel"]) && isset($_POST["motdepasse"]) && isset($_POST["motdepasse2"])
 && isset($_POST["numTelephone"]) && isset($_POST["adresseEntreprise"]) && isset($_POST["lienSiteWeb"])){
-
-    $nom = $_POST["nomFondateur"];
-    $prenom = $_POST["prenomFondateur"];
-    $nomEntreprise = $_POST["nomEntreprise"];
+    
     $username = $_POST["username"];
 
     // VERIFICATION DE L'EXISTENCE DE USAGER
@@ -50,9 +47,9 @@ if(isset($_POST["nomEntreprise"]) && isset($_POST["prenomFondateur"]) && isset($
 
         $requete->bindValue(":username", $username);
         $requete->bindValue(":motdepasse", password_hash($_POST["motdepasse"], PASSWORD_DEFAULT));
-        $requete->bindValue(":nomEntreprise", $nomEntreprise);
-        $requete->bindValue(":prenomFondateur", $prenom);
-        $requete->bindValue(":nomFondateur", $nom);
+        $requete->bindValue(":nomEntreprise", $_POST["nomEntreprise"]);
+        $requete->bindValue(":prenomFondateur", $_POST["prenomFondateur"]);
+        $requete->bindValue(":nomFondateur", $_POST["nomFondateur"]);
         $requete->bindValue(":numTelephone", $_POST["numTelephone"]);
         $requete->bindValue(":courriel", $_POST["courriel"]);
         $requete->bindValue(":adresseEntreprise", $_POST["adresseEntreprise"]);
