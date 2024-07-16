@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création de Compte Entreprise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        h2 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .submit-btn {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Création de Compte Entreprise</h1>
+        <form action="submit_form.php" method="POST">
+            <div class="section">
+                <h2>Informations de Connexion</h2>
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+            </div>
+            <div class="section">
+                <h2>Informations de l'Entreprise</h2>
+                <div class="form-group">
+                    <label for="company_name">Nom de l'Entreprise</label>
+                    <input type="text" id="company_name" name="company_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="owner_firstname">Prénom du Détenteur</label>
+                    <input type="text" id="owner_firstname" name="owner_firstname" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">Numéro de Téléphone</label>
+                    <input type="text" id="phone_number" name="phone_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Courriel de l'Entreprise</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Adresse de l'Entreprise</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+            </div>
+            <div class="section">
+                <h2>Liens et Descriptions</h2>
+                <div class="form-group">
+                    <label for="website_link">Lien du Site Web</label>
+                    <input type="text" id="website_link" name="website_link">
+                </div>
+                <div class="form-group">
+                    <label for="facebook_link">Lien de la Page Facebook</label>
+                    <input type="text" id="facebook_link" name="facebook_link">
+                </div>
+                <div class="form-group">
+                    <label for="instagram_link">Lien de la Page Instagram</label>
+                    <input type="text" id="instagram_link" name="instagram_link">
+                </div>
+                <div class="form-group">
+                    <label for="tiktok_link">Lien de la Page TikTok</label>
+                    <input type="text" id="tiktok_link" name="tiktok_link">
+                </div>
+                <div class="form-group">
+                    <label for="youtube_link">Lien de la Chaîne YouTube</label>
+                    <input type="text" id="youtube_link" name="youtube_link">
+                </div>
+                <div class="form-group">
+                    <label for="company_description">Description de l'Entreprise</label>
+                    <input type="text" id="company_description" name="company_description">
+                </div>
+                <div class="form-group">
+                    <label for="service_description">Description des Services</label>
+                    <input type="text" id="service_description" name="service_description">
+                </div>
+                <div class="form-group">
+                    <label for="service_price">Prix des Services</label>
+                    <input type="text" id="service_price" name="service_price">
+                </div>
+                <div class="form-group">
+                    <label for="delivery_time">Temps de Livraison</label>
+                    <input type="text" id="delivery_time" name="delivery_time">
+                </div>
+            </div>
+            <button type="submit" class="submit-btn">Créer le Compte</button>
+        </form>
+    </div>
+</body>
+</html>
