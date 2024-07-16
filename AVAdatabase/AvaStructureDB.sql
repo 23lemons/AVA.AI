@@ -18,6 +18,7 @@ CREATE TABLE Entreprise (
     description_service TEXT NOT NULL,
     prix_service DECIMAL(10, 2) NOT NULL,
     temps_livraison VARCHAR(20) NOT NULL
+    courriel VARCHAR(40) NOT NULL
 );
 
 CREATE TABLE Prospects (

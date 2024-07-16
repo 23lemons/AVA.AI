@@ -66,7 +66,7 @@ if(isset($_POST["nomEntreprise"]) && isset($_POST["prenomFondateur"]) && isset($
 
         $requete->execute();
 
-        header('Location: login.php');//AMINE
+        header('Location: login.php');
         exit();
     }
 }
