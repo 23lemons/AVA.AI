@@ -1,6 +1,6 @@
 <?php
 
-require_once ('./config.php)');
+require_once ('./config.php');
 
 
 $erreur ="";
@@ -82,7 +82,7 @@ $erreur ="";
 
         function register() {
             // Redirection vers la page d'inscription
-            window.location.href = 'informationPrincipal.php';
+            window.location.href = 'informationPrincipale.php';
         }
     </script>
 </body>

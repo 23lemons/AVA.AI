@@ -21,7 +21,7 @@
                     <li><a href="#review">Avis</a></li>
                     
                 </ul>
-                <a href="nouveau_login_ava.html" class="btn login-btn">Se Connecter</a>
+                <a href="nouveau_login_ava.php" class="btn login-btn">Se Connecter</a>
             </div>
         </nav>
     </header>
