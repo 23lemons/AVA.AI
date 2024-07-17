@@ -40,7 +40,7 @@ $conn->close();
     <div class="div-1">
       <h1 class="heading-3">Tableau de bord - AVA</h1>
       <div class="div-block-414">
-        <a href="https://webflow.com/website/table-template-81d32b" target="_blank" class="button w-button">Téléverser (.csv)</a>
+        <a target="_blank" class="button w-button">Téléverser (.csv)</a>
       </div>
     </div>
     <div class="table-wrapper">
