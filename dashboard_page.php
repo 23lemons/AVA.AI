@@ -1,28 +1,29 @@
-<?php
 
-require_once ('./config.php');
+<?php
+include ("./config.php");
 
 $id_entreprise = 1;
 
 $sql = "SELECT prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, statut_prospect 
-        FROM Prospects WHERE id_entreprise = :id "; // Remplacez ? par l'ID de l'entreprise appropriée
+        FROM Prospects WHERE id_entreprise = :id"; 
 
 // Préparer la déclaration
 $stmt = $conn->prepare($sql);
-$stmt->bindParam(":id", $id_entreprise); // Remplacez $id_entreprise par l'ID de l'entreprise appropriée
+$stmt->bindParam(":id", $id_entreprise, PDO::PARAM_INT); 
 $stmt->execute();
-$result = $stmt->get_result();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if($result->num_rows > 0){
-    $prospects = $result->fetch_all(MYSQLI_ASSOC);
+if(count($result) > 0){
+    $prospects = $result;
 } else {
     $erreur = "0 clients";
-    echo $erreur;
+    echo $erreur;   
     $prospects = [];
 }
 
-$stmt->close();
-$conn->close();
+// Pas besoin de close() pour PDOStatement
+// Utilisation de null pour fermer la connexion PDO
+$conn = null;
 ?>
 
 <!DOCTYPE html>

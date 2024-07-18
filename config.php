@@ -1,10 +1,7 @@
+
 <?php
 // Démarrer la session
 session_start();
-
-if(isset($_GET["logout"])){
-    unset($_SESSION['user_loggedin']);
-  }
 
 // Informations de connexion à la base de données
 $hostname = "db";
@@ -22,3 +19,5 @@ try {
 } catch(PDOException $e) {
     echo "Connexion échouée: " . $e->getMessage();
 }
+
+?>
