@@ -65,8 +65,10 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
 </head>
 <body>
     <div class="container">
-        <div class="left-section">
-            <div class="logo">LOGO</div>
+    <div class="left-section">
+            <div class="logo">
+                <img src="images/AVALOGOBLANC.png" alt="Votre Logo" />
+            </div>
             <h1 class="sauce">Bienvenue chez AVA.AI</h1>
             <p class="sauce">Inscrivez vous pour accédez au futur</p>
         </div>
