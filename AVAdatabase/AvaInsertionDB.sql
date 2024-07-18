@@ -1,22 +1,24 @@
 
-INSERT INTO Entreprise (
-    username_entreprise, mdp_entreprise, nom_entreprise, prenom_fondateur, nom_fondateur, num_tel_entreprise, courriel_entreprise, 
-    adresse_entreprise, heures_ouvertures, lien_site_web, lien_page_facebook, lien_page_instagram, 
-    lien_page_tiktok, lien_chaine_youtube, description_entreprise, description_service, 
-    prix_service, temps_livraison
-) VALUES (
-    'webcreations','12345678','Web Creations', 'John', 'Doe', '1234567890', 'contact@webcreations.com', 
-    '123 Web Street, City, Country', 'Mon-Fri 9:00-18:00', 'http://www.webcreations.com', 
-    'http://facebook.com/webcreations', 'http://instagram.com/webcreations', 
-    'http://tiktok.com/@webcreations', 'http://youtube.com/webcreations', 
-    'Web Creations specializes in creating custom websites for businesses.', 
-    'We offer website design, development, and maintenance services.', 
-    1500.00, '2 weeks'
-);
+-- Inserting data into Entreprise table
+INSERT INTO Entreprise (username_entreprise, mdp_entreprise, nom_entreprise)
+VALUES ('techsolutions', 'securepassword123', 'Tech Solutions');
 
-SET @entreprise_id = LAST_INSERT_ID();
+-- Inserting data into Infos_Entreprise table
+INSERT INTO Infos_Entreprise (id_entreprise, prenom_fondateur, nom_fondateur, num_tel_entreprise, courriel_entreprise,
+                                adresse_entreprise, heures_ouvertures, lien_site_web, lien_page_facebook,
+                                lien_page_instagram, lien_page_tiktok, lien_chaine_youtube,
+                                description_entreprise, description_service, prix_service, temps_livraison)
+VALUES (1, 'John', 'Doe', '1234567890', 'contact@techsolutions.com', '123 Tech Street, City, Country',
+        '9am - 5pm', 'https://techsolutions.com', 'https://facebook.com/techsolutions', 'https://instagram.com/techsolutions',
+        'https://tiktok.com/@techsolutions', 'https://youtube.com/techsolutions', 'Leading provider of tech solutions',
+        'Comprehensive IT and software services', 500.00, '3 days');
 
-INSERT INTO Prospects (prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, statut_prospect, id_entreprise) VALUES
-('Alice', 'Smith', '1234567891', 'alice.smith@example.com', 'en attente', @entreprise_id),
-('Bob', 'Johnson', '1234567892', 'bob.johnson@example.com', 'pas intéressé', @entreprise_id),
-('Charlie', 'Brown', '1234567893', 'charlie.brown@example.com', 'intéressé', @entreprise_id);
+-- Inserting data into Prospects table
+INSERT INTO Prospects (prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, id_entreprise, statut_prospect)
+VALUES ('Alice', 'Smith', '1234567891', 'alice.smith@example.com', 1, 'Interesse');
+
+INSERT INTO Prospects (prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, id_entreprise, statut_prospect)
+VALUES ('Bob', 'Johnson', '1234567892', 'bob.johnson@example.com', 1, 'En attente');
+
+INSERT INTO Prospects (prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, id_entreprise, statut_prospect)
+VALUES ('Charlie', 'Brown', '1234567893', 'charlie.brown@example.com', 1, 'Pas interesse');
