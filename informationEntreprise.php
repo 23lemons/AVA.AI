@@ -40,8 +40,10 @@ if(isset($_POST["company_name"]) && isset($_POST["owner_firstname"]) && isset($_
 </head>
 <body>
     <div class="container">
-        <div class="left-section">
-            <div class="logo">LOGO</div>
+    <div class="left-section">
+            <div class="logo">
+                <img src="images/AVALOGOBLANC.png" alt="Votre Logo" />
+            </div>
             <h1 class="sauce">Chez AVA, votre paix d'esprit est notre mission</h1>
         </div>
         <div class="right-section">
