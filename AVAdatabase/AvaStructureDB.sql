@@ -1,13 +1,11 @@
 CREATE TABLE Entreprise (
-
     id_entreprise INT AUTO_INCREMENT PRIMARY KEY,
     username_entreprise VARCHAR(20) NOT NULL,
     mdp_entreprise VARCHAR(20) NOT NULL,
-    nom_entreprise VARCHAR(20) NOT NULL,
+    nom_entreprise VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Infos_Entreprise (
-
     id_entreprise INT PRIMARY KEY,
     prenom_fondateur VARCHAR(20) NOT NULL,
     nom_fondateur VARCHAR(20) NOT NULL,
@@ -23,12 +21,11 @@ CREATE TABLE Infos_Entreprise (
     description_entreprise TEXT NOT NULL,
     description_service TEXT NOT NULL,
     prix_service DECIMAL(10, 2) NOT NULL,
-    temps_livraison VARCHAR(20) NOT NULL
+    temps_livraison VARCHAR(20) NOT NULL,
     FOREIGN KEY (id_entreprise) REFERENCES Entreprise(id_entreprise)
 );
 
 CREATE TABLE Prospects (
-
     id_prospect INT AUTO_INCREMENT PRIMARY KEY,
     prenom_prospect VARCHAR(20) NOT NULL,
     nom_prospect VARCHAR(20) NOT NULL,
