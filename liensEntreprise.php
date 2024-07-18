@@ -10,7 +10,7 @@ if(isset($_POST["website_link"])) {
     $facebook_link = $_POST["facebook_link"];
     $youtube_link = $_POST["youtube_link"];
 
-    $requete = $conn->prepare("INSERT INTO Entreprise (lien_site_web, lien_page_instagram, lien_page_tiktok, lien_chaine_youtube, lien_page_facebook) 
+    $requete = $conn->prepare("INSERT INTO Infos_Entreprise (lien_site_web, lien_page_instagram, lien_page_tiktok, lien_chaine_youtube, lien_page_facebook) 
     VALUES (:lienWEB, :lienIG, :lienTiktok, :lienYT, :lienFB)");
 
     $requete->bindValue(":lienWEB", $website_link);
