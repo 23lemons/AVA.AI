@@ -5,13 +5,11 @@ require_once ('./config.php');
 $id_entreprise = 1;
 
 $sql = "SELECT prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, statut_prospect 
-        FROM Prospects 
-        INNER JOIN Entreprises ON Prospects.id_entreprise = Entreprises.id_entreprise
-        WHERE Entreprises.id_entreprise = ? "; // Remplacez ? par l'ID de l'entreprise appropriée
+        FROM Prospects WHERE id_entreprise = :id "; // Remplacez ? par l'ID de l'entreprise appropriée
 
 // Préparer la déclaration
 $stmt = $conn->prepare($sql);
-$stmt->bindParam("i", $id_entreprise); // Remplacez $id_entreprise par l'ID de l'entreprise appropriée
+$stmt->bindParam(":id", $id_entreprise); // Remplacez $id_entreprise par l'ID de l'entreprise appropriée
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -56,38 +54,14 @@ $conn->close();
           <div class="table-heading">Status</div>
         </div>
         <div class="table-box action">
-          <div class="table-heading">Action</div>
+         <div class="table-heading">Action</div>
         </div>
       </div>
       <div class="table-container">
         <div class="table-data-wrapper">
           <div class="scroll-container">
             <div class="scroll-table-content">
-              <div class="table-row head hide"><!-- div n"est pas affiche -->
-                <div class="div-block-406"></div>
-                <div class="table-box">
-                  <div class="table-heading">Name</div>
-                </div>
-                <div class="table-box">
-                  <div class="table-heading">Email</div>
-                </div>
-                <div class="table-box">
-                  <div class="table-heading">Phone</div>
-                </div>
-                <div class="table-box">
-                  <div class="table-heading">Country</div>
-                </div>
-                <div class="table-box _11">
-                  <div class="table-heading">Last Update</div>
-                </div>
-                <div class="table-box action">
-                  <div class="table-heading">Status</div>
-                </div>
-                <div class="table-box action">
-                  <div class="table-heading">Action</div>
-                </div>
-              </div>
-
+              <div class="table-row head hide">
               <?php
               $i = 1;
               foreach ($prospects as $prospect) {
