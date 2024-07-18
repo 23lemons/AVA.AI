@@ -2,27 +2,28 @@
 include ("./config.php");
 
 $id_entreprise = 1;
+$prospects = [];
 
-$sql = "SELECT prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, statut_prospect 
-        FROM Prospects WHERE id_entreprise = :id"; 
+try {
+    $sql = "SELECT prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, statut_prospect 
+            FROM Prospects WHERE id_entreprise = :id";
 
-// Préparer la déclaration
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(":id", $id_entreprise, PDO::PARAM_INT); 
-$stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Préparer la déclaration
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(":id", $id_entreprise, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
 
-if(count($result) > 0){
-    $prospects = $result;
-} else {
-    $erreur = "0 clients";
-    echo $erreur;   
-    $prospects = [];
-}
+    if (count($result) > 0) {
+        $prospects = $result;
+        }
+     else {
+        echo "0 clients";
+    }
+} catch (PDOException $e){
 
-// Pas besoin de close() pour PDOStatement
-// Utilisation de null pour fermer la connexion PDO
-$conn = null;
+	echo "Erreur:" . $e->getMessage();
+    	$conn = null;}
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +62,6 @@ $conn = null;
         <div class="table-data-wrapper">
           <div class="scroll-container">
             <div class="scroll-table-content">
-              <div class="table-row head hide">
               <?php
               $i = 1;
               foreach ($prospects as $prospect) {
