@@ -106,12 +106,14 @@ header .login-btn:hover {
 }
 
 #hero .btn {
-    background: #fff;
-    color: #53035e;
+
+    background: linear-gradient(90deg, rgba(0,123,255,1) 0%, rgba(255,0,150,1) 100%);
+    color:#f0f0f0;
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
+    transition: background 0.3s;
 }
 
 /* Section Styles */
@@ -126,11 +128,65 @@ section {
 
 /* About Section */
 .about {
+    padding: 50px 20px;
+    margin: 50px 20px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+}
+.about_header {
+    font-weight: bold;
+    background: linear-gradient(to right, #4a90e2, #9b30ff);
+    -webkit-background-clip: text; /* Pour les navigateurs basés sur WebKit (Safari, Chrome, etc.) */
+    background-clip: text; /* Standard */
+    color: transparent; /* Rend le texte transparent */
+}
+
+
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.about-text {
+    flex: 1;
+    margin-right: 20px;
+}
+.about-text p {
+    text-align: justify; /* Aligner le texte justifié */
+    text-justify: inter-word; /* Justification inter-mots */
+    line-height: 1.5; /* Espacement des lignes */
+    margin-bottom: 10px; /* Marge en bas */
+}
+
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user_text{
+    display: inline-block; margin-right: 10px;
+    font-weight: bold;
+    color:#333;
 }
 
 .user-count {
     margin-top: 20px;
+    display: inline-block; margin: 0;
 }
 
 .user-count h3 {
@@ -141,6 +197,14 @@ section {
 /* Features Section */
 .features {
     text-align: center;
+}
+
+.features_text{
+    font-weight: bold;
+    background: linear-gradient(to right, #4a90e2, #9b30ff);
+    -webkit-background-clip: text; /* Pour les navigateurs basés sur WebKit (Safari, Chrome, etc.) */
+    background-clip: text; /* Standard */
+    color: transparent; /* Rend le texte transparent */
 }
 
 .features-grid {
@@ -180,6 +244,14 @@ section {
 /* Pricing Section */
 .plans {
     text-align: center;
+}
+
+.pricing_text{
+    font-weight: bold;
+    background: linear-gradient(to right, #4a90e2, #9b30ff);
+    -webkit-background-clip: text; /* Pour les navigateurs basés sur WebKit (Safari, Chrome, etc.) */
+    background-clip: text; /* Standard */
+    color: transparent; /* Rend le texte transparent */
 }
 
 .plans-container {
@@ -245,6 +317,14 @@ section {
     text-align: center;
 }
 
+.review_text{
+    font-weight: bold;
+    background: linear-gradient(to right, #4a90e2, #9b30ff);
+    -webkit-background-clip: text; /* Pour les navigateurs basés sur WebKit (Safari, Chrome, etc.) */
+    background-clip: text; /* Standard */
+    color: transparent; /* Rend le texte transparent */
+}
+
 .review-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -272,7 +352,7 @@ section {
 
 /* Footer Section */
 footer {
-    background: #333;
+    background: linear-gradient(90deg, rgba(0,123,255,1) 0%, rgba(255,0,150,1) 100%);
     color: #fff;
     text-align: center;
     padding: 20px 0;

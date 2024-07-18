@@ -11,7 +11,7 @@
     <header>
         <nav>
             <div class="logo">
-                <h1>AVA</h1>
+                <img src="images\Capture d’écran 2024-07-16 101521.png" alt="Logo AVA" style="width: 100px; height: auto;">
             </div>
             <div class="nav-items">
                 <ul>
@@ -26,67 +26,60 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+ <!-- Hero Section -->
     <section id="hero">
         <h1>Bienvenue chez AVA</h1>
         <p>Découvrez la puissance de l'intelligence artificielle pour votre entreprise.</p>
         <a href="#about" class="btn">En savoir plus</a>
     </section>
 
-    <!-- About Section -->
+
     <section id="about" class="about">
-        <h2>À propos de nous</h2>
-        <p>Chez AVA, nous nous consacrons à la création de solutions d'intelligence artificielle de pointe pour aider les entreprises à atteindre de nouveaux sommets. Nos technologies innovantes et notre expertise en analyse de données permettent aux entreprises de prendre des décisions éclairées, d'automatiser les processus clés et de maximiser leurs revenus.</p>
-        <p>Notre application fonctionne en utilisant des algorithmes avancés pour analyser vos données commerciales et fournir des recommandations précises et exploitables. Avec une interface conviviale et un support client dédié, nous veillons à ce que chaque utilisateur tire le meilleur parti de notre technologie.</p>
-        <div class="user-count">
-            <h3>Nombre d'utilisateurs : 5000+</h3>
+        <h2 class="about_header">À propos de AVA</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <p>AVA est une IA qui assure que les prospects des entreprises signataires soient accueillis de manière humaine. Elle convertit l'intérêt du client en vente et organise un rendez-vous pour que le client parle avec le responsable des ventes de l'entreprise. Cette solution permet de réduire le fardeau de la communication constante avec les clients et de gagner du temps précieux.</p>
+                <p>Notre application utilise des algorithmes avancés pour analyser les données commerciales et fournir des recommandations précises et exploitables. Avec une interface conviviale et un support client dédié, nous veillons à ce que chaque utilisateur tire le meilleur parti de notre technologie.</p>
+                <div class="user-count">
+                    <p class="user_text">Nos utilisateurs satisfaits</p>
+                    <h3 id="user-count">0+</h3>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="images\carlos-muza-hpjSkU2UYSU-unsplash.jpg" alt="Image descriptive">
+            </div>
         </div>
     </section>
 
     <!-- Features Section -->
     <section id="features" class="features">
-        <h2>Fonctionnalités impressionnantes</h2>
-        <div class="features-grid">
-            <div class="feature-item">
-                <img src=".png" alt="High Resolution">
-                <h3>Haute résolution</h3>
-                <p>Profitez d'une qualité d'image exceptionnelle avec une haute résolution.</p>
-            </div>
-            <div class="feature-item">
-                <img src=".png" alt="Retina Ready">
-                <h3>Prêt pour la rétine</h3>
-                <p>Des visuels nets et éclatants sur les écrans Retina.</p>
-            </div>
-            <div class="feature-item">
-                <img src=".png" alt="Editable Data">
-                <h3>Données éditables</h3>
-                <p>Modifiez et personnalisez vos données en toute simplicité.</p>
-            </div>
-            <div class="feature-item">
-                <img src=".png" alt="Fully Secured">
-                <h3>Entièrement sécurisé</h3>
-                <p>Vos données sont protégées avec des mesures de sécurité avancées.</p>
-            </div>
-            <div class="feature-item">
-                <img src=".png" alt="Cloud Storage">
-                <h3>Stockage en nuage</h3>
-                <p>Accédez à vos données depuis n'importe où avec notre solution de stockage en nuage.</p>
-            </div>
-            <div class="feature-item">
-                <img src=".png" alt="Fully Responsive">
-                <h3>Entièrement réactif</h3>
-                <p>Profitez d'une expérience utilisateur optimale sur tous les appareils.</p>
-            </div>
+    <h2 class="features_text">Fonctionnalités</h2>
+    <div class="features-grid">
+        <div class="feature-item">
+            <img src="images\user.png" >
+            <h3>Communication humaine et non-intrusive</h3>
+            <p>AVA communique avec vos prospects de maniere naturelle et vend sans être intrusive.</p>
         </div>
-    </section>
+        <div class="feature-item">
+            <img src="images\money-growth.png" >
+            <h3>Haut taux de conversion garanti</h3>
+            <p>Optimisez vos campagnes avec des taux de conversion élevés.</p>
+        </div>
+        <div class="feature-item">
+            <img src="images\trading.png" >
+            <h3>Suivez le statut en direct</h3>
+            <p>Visualisez en temps réel les performances de vos initiatives.</p>
+        </div>
+    </div>
+</section>
 
-    <!-- Pricing Section -->
+<!-- Pricing Section -->
     <section id="pricing" class="plans">
-        <h2>Choisissez votre plan</h2>
+        <h2 class="pricing_text">Choisissez votre plan</h2>
         <div class="plans-container">
             <div class="plan">
                 <h3>Standard</h3>
-                <p class="price">19,99 $/mois</p>
+                <p class="price"> 0$/mois</p>
                 <ul>
                     <li>Fonctionnalités de base</li>
                     <li>Accès à la plateforme</li>
@@ -96,7 +89,7 @@
             </div>
             <div class="plan">
                 <h3>Élite</h3>
-                <p class="price">49,99 $/mois</p>
+                <p class="price">19,99$/mois</p>
                 <ul>
                     <li>Toutes les fonctionnalités de base</li>
                     <li>Gestionnaire de compte personnel</li>
@@ -106,7 +99,7 @@
             </div>
             <div class="plan">
                 <h3>Extrême</h3>
-                <p class="price">99,99 $/mois</p>
+                <p class="price">49,99$/mois</p>
                 <ul>
                     <li>Toutes les fonctionnalités Élite</li>
                     <li>Support illimité</li>
@@ -119,19 +112,19 @@
 
     <!-- Reviews Section -->
     <section id="review" class="reviews">
-        <h2>Avis Clients</h2>
+        <h2 class="review_text">Avis Clients</h2>
         <div class="review-container">
             <div class="review-item">
                 <p>"AVA a transformé notre façon de gérer les ventes. Les analyses avancées sont incroyables et nous ont aidés à augmenter nos revenus de 20% en seulement trois mois."</p>
-                <span>- Jean Dupont, CEO de TechCorp</span>
+                <span>- Jean Kulbain, CEO de TechCorp</span>
             </div>
             <div class="review-item">
                 <p>"L'IA d'AVA est extrêmement précise et intuitive. Elle nous a permis d'automatiser nos processus et de nous concentrer sur les aspects stratégiques de notre entreprise."</p>
-                <span>- Marie Martin, Directrice Marketing de MarketLeads</span>
+                <span>- Gyat Jr, Directrice Marketing de MarketLeads</span>
             </div>
             <div class="review-item">
                 <p>"L'interface est conviviale et le support client est exceptionnel. Nous recommandons vivement AVA à toutes les entreprises cherchant à optimiser leurs performances."</p>
-                <span>- Luc Durand, COO de BizSolutions</span>
+                <span>- Peter Parker, COO de BizSolutions</span>
             </div>
         </div>
     </section>
@@ -140,5 +133,6 @@
     <footer>
         <p>&copy; 2024 AVA. Tous droits réservés.</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
