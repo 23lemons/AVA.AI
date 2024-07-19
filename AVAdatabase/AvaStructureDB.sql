@@ -2,15 +2,15 @@ CREATE TABLE Entreprise (
     id_entreprise INT AUTO_INCREMENT PRIMARY KEY,
     username_entreprise VARCHAR(20) NOT NULL,
     mdp_entreprise VARCHAR(20) NOT NULL,
-    nom_entreprise VARCHAR(20) NOT NULL
+    courriel_entreprise VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Infos_Entreprise (
     id_entreprise INT PRIMARY KEY,
+    nom_entreprise VARCHAR(20) NOT NULL,
     prenom_fondateur VARCHAR(20) NOT NULL,
     nom_fondateur VARCHAR(20) NOT NULL,
     num_tel_entreprise VARCHAR(20) NOT NULL,
-    courriel_entreprise VARCHAR(50) NOT NULL,
     adresse_entreprise TEXT NOT NULL,
     heures_ouvertures TEXT NOT NULL,
     lien_site_web TEXT NOT NULL,

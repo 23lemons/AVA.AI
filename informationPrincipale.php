@@ -14,7 +14,7 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
     $username = $_POST["username"];
 
     // VERIFICATION DE L'EXISTENCE DE USAGER
-    $requete = $conn->prepare("SELECT * FROM usagers WHERE username = :username");
+    $requete = $conn->prepare("SELECT * FROM Entreprise WHERE username_entreprise = :username");
     $requete->bindParam(":username", $username);
     $requete->execute();
 
@@ -24,35 +24,37 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
     }
 
     // VERIFICATION DE LA LONGUEUR DU PASSWORD   
-    else if(strlen($_POST["motdepasse"]) < 8){
+    else if(strlen($_POST["password"]) < 8){
         $erreur = "Le mot de passe doit comprendre au moins 8 caractères";
         $nbErreur++;
     }
 
     // VERIFICATION DE LA SIMILARITÉ DU PASSWORD 
-    else if($_POST["motdepasse"] != $_POST["confirm_password"]){
+    else if($_POST["password"] != $_POST["confirm_password"]){
         $erreur = "Les deux mots de passe ne sont pas pareils.";
         $nbErreur++;
-    }
+ 
+   }
 
     if($nbErreur == 0){
 
-        $requete = $conn->prepare("INSERT INTO Entreprise (username, email, motdepasse)
+        $requete = $conn->prepare("INSERT INTO Entreprise (username_entreprise, courriel_entreprise, mdp_entreprise)
         VALUES (:username, :email, :motdepasse)");
 
         $requete->bindValue(":username", $username);
         $requete->bindValue(":email", $_POST["email"]);
-        $requete->bindValue(":motdepasse", $_POST["motdepasse"]);
+        $requete->bindValue(":motdepasse", $_POST["password"]);
 
         $requete->execute();
 
         header("Location: informationEntreprise.php");
-        exit();
+
+    } else { 
+
+	    header("Location: informationPrincipale.php");
     }
-
-
+    exit();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -70,11 +72,12 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
                 <img src="images/AVALOGOBLANC.png" alt="Votre Logo" />
             </div>
             <h1 class="sauce">Bienvenue chez AVA.AI</h1>
-            <p class="sauce">Inscrivez vous pour accédez au futur</p>
+	    <p class="sauce">Inscrivez vous pour accédez au futur</p></br>
+	    <p class="erreur"> <?php echo $erreur ?> </p>
         </div>
         <div class="right-section">
             <h2>Inscription</h2>
-            <form action="informationEntreprise.php" method="POST">
+            <form action="informationPrincipale.php" method="POST">
                 <div class="form-group">
                     <label for="username">Nom d'utilisateur</label>
                     <input type="text" id="username" name="username" required>
