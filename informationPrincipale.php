@@ -48,12 +48,8 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
         $requete->execute();
 
         header("Location: informationEntreprise.php");
-
-    } else { 
-
-	    header("Location: informationPrincipale.php");
+	exit();
     }
-    exit();
 }
 ?>
 

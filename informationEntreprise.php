@@ -23,11 +23,8 @@ if(isset($_POST["company_name"]) && isset($_POST["owner_firstname"]) && isset($_
 
     // Redirection vers la page suivante
     header("Location: liensEntreprise.php");
-} else {
-
-	header("Location: informationEntreprise.php");
+    exit();
 }
-exit();
 
 ?>
 
@@ -49,7 +46,7 @@ exit();
         </div>
         <div class="right-section">
             <h2>Informations de l'Entreprise</h2>
-            <form action="liensEntreprise.php" method="POST">
+            <form action="informationEntreprise.php" method="POST">
                 <div class="form-group">
                     <label for="company_name">Nom de l'Entreprise</label>
                     <input type="text" id="company_name" name="company_name" required>
