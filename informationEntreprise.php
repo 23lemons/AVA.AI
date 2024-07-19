@@ -10,16 +10,11 @@ if(isset($_POST["company_name"]) && isset($_POST["owner_firstname"]) && isset($_
     $phone_number = $_POST["phone_number"];
     $address = $_POST["address"];
     $company_description = $_POST["company_description"];
-
-    // Vous pouvez ajouter ici votre code pour enregistrer les données dans la base de données ou autre traitement
-    $requete = $conn->prepare("INSERT INTO Entreprise (nom_entreprise) VALUES (:company_name)");
+    
+    $requete = $conn->prepare("INSERT INTO Infos_Entreprise (nom_entreprise, prenom_fondateur, nom_fondateur, num_tel_entreprise, adresse_entreprise, description_entreprise) 
+    VALUES (:company_name, :owner_firstname, :phone_number, :adress, :company_description)");
 
     $requete->bindValue(":company_name", $company_name);
-    $requete->execute();
-    
-    $requete = $conn->prepare("INSERT INTO Infos_Entreprise (prenom_fondateur, nom_fondateur, num_tel_entreprise, adresse_entreprise, description_entreprise) 
-    VALUES (:owner_firstname, :phone_number, :adress, :company_description)");
-
     $requete->bindValue(":owner_firstname", $owner_firstname);
     $requete->bindValue(":phone_number", $phone_number);
     $requete->bindValue(":adress", $address);
@@ -28,8 +23,11 @@ if(isset($_POST["company_name"]) && isset($_POST["owner_firstname"]) && isset($_
 
     // Redirection vers la page suivante
     header("Location: liensEntreprise.php");
-    exit();
+} else {
+
+	header("Location: informationEntreprise.php");
 }
+exit();
 
 ?>
 
