@@ -6,7 +6,8 @@ CREATE TABLE Entreprise (
 );
 
 CREATE TABLE Infos_Entreprise (
-    id_entreprise INT AUTO_INCREMENT PRIMARY KEY,
+    id_infos_entreprise INT AUTO_INCREMENT PRIMARY KEY,
+    id_entreprise INT,
     nom_entreprise VARCHAR(20) NOT NULL,
     prenom_fondateur VARCHAR(20) NOT NULL,
     nom_fondateur VARCHAR(20) NOT NULL,
@@ -21,7 +22,8 @@ CREATE TABLE Infos_Entreprise (
 );
 
 CREATE TABLE Liens_Entreprise (
-    id_entreprise INT AUTO_INCREMENT PRIMARY KEY,
+    id_liens_entreprise INT AUTO_INCREMENT PRIMARY KEY,
+    id_entreprise INT,
     lien_site_web TEXT NOT NULL,
     lien_page_facebook TEXT,
     lien_page_instagram TEXT,
