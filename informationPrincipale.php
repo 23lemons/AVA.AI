@@ -47,6 +47,8 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
 
         $requete->execute();
 
+
+        $_SESSION["id_entreprise"] = $conn->lastInsertId();
         header("Location: informationEntreprise.php");
 	exit();
     }
