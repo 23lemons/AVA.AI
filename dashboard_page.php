@@ -35,10 +35,23 @@ try {
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
+<header>
+        <nav>
+            <div class="logo">
+                <img src="images\Capture d’écran 2024-07-16 101521.png" alt="Logo AVA" style="width: 100px; height: auto;">
+            </div>
+            <div class="nav-items">
+                <ul>
+                    <li><a href="landing_page.php">Acceuil</a></li>
+                    
+                </ul>
+            </div>
+        </nav>
+    </header>
   <div class="wrapper-section">
     <div class="div-1">
       <h1 class="heading-3">Tableau de bord - AVA</h1>
-      <div class="div-block-414">
+      <div class="div-block-televerser">
         <a target="_blank" class="button w-button">Téléverser (.csv)</a>
       </div>
     </div>
@@ -105,5 +118,8 @@ try {
         </div>
       </div>
     </div>
+    <footer>
+        <p>&copy; 2024 AVA. Tous droits réservés.</p>
+    </footer>
   </body>
 </html>

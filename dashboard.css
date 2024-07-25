@@ -1,3 +1,8 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
 .div-block-412 {
     justify-content: space-between;
     align-items: center;
@@ -188,7 +193,7 @@
     max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
-    padding: 60px 40px 220px;
+    padding: 60px 40px 60px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif;
     display: flex;
   }
@@ -233,7 +238,7 @@
     transform: rotate(180deg);
   }
   
-  .div-block-414 {
+  .div-block-televerser {
     justify-content: flex-end;
     align-items: center;
     width: 100%;
@@ -256,11 +261,81 @@
     right: 0;
   }
   
+  header {
+    background: #fff;
+    color: #333;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header .logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+header nav .nav-items {
+    display: flex;
+    align-items: center;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #ff1493;
+}
+
+header .trial-btn {
+    margin-right: 20px;
+}
+
+header .login-btn {
+    background: linear-gradient(90deg, rgba(255,0,150,1) 0%, rgba(0,123,255,1) 100%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    transition: background 0.3s;
+}
+
+header .login-btn:hover {
+    background: linear-gradient(90deg, rgba(0,123,255,1) 0%, rgba(255,0,150,1) 100%);
+}
+
   .table-details-box {
     justify-content: center;
     align-items: center;
     width: 100%;
     margin-top: 20px;
+    margin-bottom: 40px;
     padding-top: 12px;
     padding-bottom: 12px;
     display: flex;
@@ -451,3 +526,10 @@
       margin-right: 30px;
     }
   }
+
+  footer {
+    background: linear-gradient(90deg, rgba(0,123,255,1) 0%, rgba(255,0,150,1) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
