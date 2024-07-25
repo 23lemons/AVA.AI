@@ -39,7 +39,7 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
     if($nbErreur == 0){
 
         $requete = $conn->prepare("INSERT INTO Entreprise (username_entreprise, courriel_entreprise, mdp_entreprise)
-        VALUES (:username, :email, :motdepasse)");
+        VALUES (:username, :email, PASSWORD(:motdepasse) )");
 
         $requete->bindValue(":username", $username);
         $requete->bindValue(":email", $_POST["email"]);

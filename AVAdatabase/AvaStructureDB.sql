@@ -1,7 +1,7 @@
 CREATE TABLE Entreprise (
     id_entreprise INT AUTO_INCREMENT PRIMARY KEY,
     username_entreprise VARCHAR(20) NOT NULL,
-    mdp_entreprise VARCHAR(20) NOT NULL,
+    mdp_entreprise VARCHAR(255) NOT NULL,
     courriel_entreprise VARCHAR(50) NOT NULL
 );
 

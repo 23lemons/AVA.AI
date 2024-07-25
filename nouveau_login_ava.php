@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!empty($nom_utilisateur) && !empty($mot_de_passe)) {
         // Préparer la requête pour rechercher l'utilisateur par nom d'utilisateur
-        $requete = $conn->prepare("SELECT * FROM Entreprise WHERE username_entreprise = :nom_utilisateur AND mdp_entreprise =  :mot_de_passe");
+        $requete = $conn->prepare("SELECT * FROM Entreprise WHERE username_entreprise = :nom_utilisateur AND mdp_entreprise =  PASSWORD(:mot_de_passe)");
         $requete->bindParam(":nom_utilisateur", $nom_utilisateur);
         $requete->bindParam(":mot_de_passe", $mot_de_passe);
         $requete->execute();
