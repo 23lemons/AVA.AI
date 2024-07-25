@@ -17,7 +17,6 @@
                 <ul>
                     <li><a href="#about">À propos</a></li>
                     <li><a href="#features">Fonctionnalités</a></li>
-                    <li><a href="#pricing">Tarifs</a></li>
                     <li><a href="#review">Avis</a></li>
                     
                 </ul>
@@ -73,42 +72,6 @@
     </div>
 </section>
 
-<!-- Pricing Section -->
-    <section id="pricing" class="plans">
-        <h2 class="pricing_text">Choisissez votre plan</h2>
-        <div class="plans-container">
-            <div class="plan">
-                <h3>Standard</h3>
-                <p class="price"> 0$/mois</p>
-                <ul>
-                    <li>Fonctionnalités de base</li>
-                    <li>Accès à la plateforme</li>
-                    <li>Consultation gratuite</li>
-                </ul>
-                <a href="#" class="btn plan-btn">Sélectionner ce plan</a>
-            </div>
-            <div class="plan">
-                <h3>Élite</h3>
-                <p class="price">19,99$/mois</p>
-                <ul>
-                    <li>Toutes les fonctionnalités de base</li>
-                    <li>Gestionnaire de compte personnel</li>
-                    <li>Analyses avancées</li>
-                </ul>
-                <a href="#" class="btn plan-btn">Sélectionner ce plan</a>
-            </div>
-            <div class="plan">
-                <h3>Extrême</h3>
-                <p class="price">49,99$/mois</p>
-                <ul>
-                    <li>Toutes les fonctionnalités Élite</li>
-                    <li>Support illimité</li>
-                    <li>Service prioritaire</li>
-                </ul>
-                <a href="#" class="btn plan-btn">Sélectionner ce plan</a>
-            </div>
-        </div>
-    </section>
 
     <!-- Reviews Section -->
     <section id="review" class="reviews">
