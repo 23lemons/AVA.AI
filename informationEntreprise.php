@@ -5,22 +5,28 @@ require_once ('./config.php');
 
 if(isset($_POST["company_name"]) && isset($_POST["owner_firstname"]) && isset($_POST["phone_number"]) && isset($_POST["address"]) && isset($_POST["company_description"])) {
     // Votre code ici pour traiter les données du formulaire
+    $id_entreprise = $_SESSION["id_entreprise"];
     $company_name = $_POST["company_name"];
     $owner_firstname = $_POST["owner_firstname"];
+    $owner_lastname = $_POST["owner_lastname"];
     $phone_number = $_POST["phone_number"];
     $address = $_POST["address"];
     $company_description = $_POST["company_description"];
     
-    $requete = $conn->prepare("INSERT INTO Infos_Entreprise (nom_entreprise, prenom_fondateur, nom_fondateur, num_tel_entreprise, adresse_entreprise, description_entreprise) 
-    VALUES (:company_name, :owner_firstname, :phone_number, :adress, :company_description)");
+    $requete = $conn->prepare("INSERT INTO Infos_Entreprise (id_entreprise, nom_entreprise, prenom_fondateur, nom_fondateur, num_tel_entreprise, adresse_entreprise, description_entreprise) 
+    VALUES (:id_entreprise, :company_name, :owner_firstname, :owner_lastname, :phone_number, :adress, :company_description)");
 
+    $requete->bindValue(":id_entreprise", $id_entreprise);
     $requete->bindValue(":company_name", $company_name);
     $requete->bindValue(":owner_firstname", $owner_firstname);
+    $requete->bindValue(":owner_lastname", $owner_lastname);
     $requete->bindValue(":phone_number", $phone_number);
     $requete->bindValue(":adress", $address);
     $requete->bindValue(":company_description", $company_description);
     $requete->execute();
 
+
+    
     // Redirection vers la page suivante
     header("Location: liensEntreprise.php");
     exit();
@@ -54,6 +60,10 @@ if(isset($_POST["company_name"]) && isset($_POST["owner_firstname"]) && isset($_
                 <div class="form-group">
                     <label for="owner_firstname">Prénom du Détenteur</label>
                     <input type="text" id="owner_firstname" name="owner_firstname" required>
+                </div>
+                <div class="form-group">
+                    <label for="owner_lastname">Nom du Détenteur</label>
+                    <input type="text" id="owner_lastname" name="owner_lastname" required>
                 </div>
                 <div class="form-group">
                     <label for="phone_number">Numéro de Téléphone</label>

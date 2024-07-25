@@ -4,15 +4,17 @@ require_once ('./config.php');
 
 if(isset($_POST["website_link"])) {
     // Traitement des données du formulaire
+    $id_entreprise = $_SESSION["id_entreprise"];
     $website_link = $_POST["website_link"];
     $instagram_link = $_POST["instagram_link"];
     $tiktok_link = $_POST["tiktok_link"];
     $facebook_link = $_POST["facebook_link"];
     $youtube_link = $_POST["youtube_link"];
 
-    $requete = $conn->prepare("INSERT INTO Liens_Entreprise (lien_site_web, lien_page_instagram, lien_page_tiktok, lien_chaine_youtube, lien_page_facebook) 
-    VALUES (:lienWEB, :lienIG, :lienTiktok, :lienYT, :lienFB)");
+    $requete = $conn->prepare("INSERT INTO Liens_Entreprise (id_entreprise, lien_site_web, lien_page_instagram, lien_page_tiktok, lien_chaine_youtube, lien_page_facebook) 
+    VALUES (:id_entreprise, :lienWEB, :lienIG, :lienTiktok, :lienYT, :lienFB)");
 
+    $requete->bindValue(":id_entreprise", $id_entreprise);
     $requete->bindValue(":lienWEB", $website_link);
     $requete->bindValue(":lienIG", $instagram_link);
     $requete->bindValue(":lienTiktok", $tiktok_link);
@@ -22,7 +24,7 @@ if(isset($_POST["website_link"])) {
     $requete->execute();
 
     // Redirection vers le tableau de bord ou une autre page
-    header("Location: dashboard.php");
+    header("Location: dashboard_page.php");
     exit();
 }
 
