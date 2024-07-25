@@ -42,8 +42,7 @@ try {
             </div>
             <div class="nav-items">
                 <ul>
-                    <li><a href="landing_page.php">Acceuil</a></li>
-                    
+                    <li><a href="landing_page.php">Acceuil</a></li>         
                 </ul>
             </div>
         </nav>
@@ -51,21 +50,21 @@ try {
   <div class="wrapper-section">
     <div class="div-1">
       <h1 class="heading-3">Tableau de bord - AVA</h1>
-      <div class="div-block-televerser">
-        <a target="_blank" class="button w-button">Téléverser (.csv)</a>
-      </div>
+      <form class="div-block-televerser" id=>
+
+</form>
     </div>
     <div class="table-wrapper">
       <div class="table-row head">
         <div class="div-block-406"></div>
         <div class="table-box">
-          <div class="table-heading">Name</div>
+          <div class="table-heading">Nom</div>
         </div>
         <div class="table-box">
-          <div class="table-heading">Phone</div>
+          <div class="table-heading">Num. Téléphone</div>
         </div>
         <div class="table-box action">
-          <div class="table-heading">Status</div>
+          <div class="table-heading">Statut</div>
         </div>
         <div class="table-box action">
          <div class="table-heading">Action</div>
@@ -109,7 +108,7 @@ try {
               <div class="div-block-412">
                 <div class="div-block-410"><img src="images/fleche_boutton.svg" alt="" class="table-arrows _2"></div>
                 <div class="div-block-411">
-                  <div>Page <span class="text-span">1</span> of 1</div>
+                  <div>Page <span class="text-span">1</span> de 1</div>
                 </div>
                 <div class="div-block-410"><img src="images/fleche_boutton.svg" alt="" class="table-arrows"></div>
               </div>
