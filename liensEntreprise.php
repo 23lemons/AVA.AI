@@ -24,7 +24,7 @@ if(isset($_POST["website_link"])) {
     $requete->execute();
 
     // Redirection vers le tableau de bord ou une autre page
-    header("Location: dashboard_page.php");
+    header("Location: nouveau_login_ava.php");
     exit();
 }
 

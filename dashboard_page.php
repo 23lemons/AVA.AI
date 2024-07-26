@@ -1,8 +1,17 @@
 <?php
 include ("./config.php");
 
-$id_entreprise = 1;
+$requete = $conn->prepare("SELECT id_entreprise FROM Entreprise WHERE username_entreprise = :nom_utilisateur");
+$requete->bindParam(":nom_utilisateur", $_SESSION["user_loggedin"]);
+$requete->execute();
+
+// Fetch the result
+$entreprise = $requete->fetch(PDO::FETCH_ASSOC);
+
+$id_entreprise = $entreprise['id_entreprise'];
 $prospects = [];
+
+echo $_SESSION["user_loggedin"];
 
 try {
     $sql = "SELECT prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, statut_prospect 

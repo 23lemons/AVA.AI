@@ -21,22 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $requete->bindParam(":mot_de_passe", $mot_de_passe);
         $requete->execute();
 
-        // Récupérer les résultats de la requête
-       // $utilisateur = $requete->fetch();
-
-        // Vérifier si l'utilisateur existe et si le mot de passe correspond
-        // if ($utilisateur && password_verify($mot_de_passe, $utilisateur['mdp_entreprise'])) {
-        //     // L'utilisateur est authentifié
-        //     $_SESSION['username'] = $utilisateur['username_entreprise'];
-        //     $_SESSION['user_loggedin'] = true;
-        //     header('Location: dashboard_page.php');
-        //     exit();
-        // } else {
-        //     $erreur = "Nom d'utilisateur ou mot de passe incorrect.";
-        //     $nbErreur++;
-        // }
+ 
 
         if($requete->fetch()){
+        
             $_SESSION["user_loggedin"] = $nom_utilisateur;
             header("Location: dashboard_page.php");
             exit();
