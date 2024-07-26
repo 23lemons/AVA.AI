@@ -50,9 +50,11 @@ try {
   <div class="wrapper-section">
     <div class="div-1">
       <h1 class="heading-3">Tableau de bord - AVA</h1>
-      <form class="div-block-televerser" id=>
-
-</form>
+      <form class="div-block-televerser" id="upload-form">
+        <input type="file" id="csv-file" accept=".csv" />
+        <button type="button" onclick="handleFileUpload()"> Téleverser </button>
+  </form>
+  <script src="script_csvUpload.js"></script>
     </div>
     <div class="table-wrapper">
       <div class="table-row head">
