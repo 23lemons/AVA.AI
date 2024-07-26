@@ -22,6 +22,12 @@ any('/', '/landing_page.php');
 
 get('/dashboard_page.php', '/dashboard_page.php');
 
+get('/infos_clients.php', '/infos_clients.php');
+
+//api
+
+get('/api/infos_clients/$id', '/api/get_infos_clients.php');
+
 any('/404','/404.php');
 
 ?>
