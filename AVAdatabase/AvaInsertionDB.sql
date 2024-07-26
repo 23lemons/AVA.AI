@@ -19,10 +19,10 @@ VALUES (@id_entreprise, 'https://techsolutions.com', 'https://facebook.com/techs
 
 -- Inserting data into Prospects table
 INSERT INTO Prospects (prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, id_entreprise, statut_prospect)
-VALUES ('Alice', 'Smith', '1234567891', 'alice.smith@example.com', @id_entreprise, 'Interesse');
+VALUES ('Alice', 'Smith', '1234567891', 'alice.smith@example.com', @id_entreprise, 'Intéressé');
 
 INSERT INTO Prospects (prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, id_entreprise, statut_prospect)
 VALUES ('Bob', 'Johnson', '1234567892', 'bob.johnson@example.com', @id_entreprise, 'En attente');
 
 INSERT INTO Prospects (prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, id_entreprise, statut_prospect)
-VALUES ('Charlie', 'Brown', '1234567893', 'charlie.brown@example.com', @id_entreprise, 'Pas interesse');
+VALUES ('Charlie', 'Brown', '1234567893', 'charlie.brown@example.com', @id_entreprise, 'Pas intéressé');

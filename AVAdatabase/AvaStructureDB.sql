@@ -40,7 +40,7 @@ CREATE TABLE Prospects (
     num_tel_prospect VARCHAR(20) NOT NULL,
     courriel_prospect VARCHAR(50) NOT NULL,
     id_entreprise INT,
-    statut_prospect VARCHAR(20),
+    statut_prospect VARCHAR(20) DEFAULT 'En attente',
     FOREIGN KEY (id_entreprise) REFERENCES Entreprise(id_entreprise)
 );
 
