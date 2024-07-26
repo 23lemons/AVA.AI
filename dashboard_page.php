@@ -7,11 +7,17 @@ $requete->execute();
 
 // Fetch the result
 $entreprise = $requete->fetch(PDO::FETCH_ASSOC);
-
 $id_entreprise = $entreprise['id_entreprise'];
-$prospects = [];
 
-echo $_SESSION["user_loggedin"];
+$requete = $conn->prepare("SELECT nom_entreprise FROM Infos_Entreprise WHERE id_entreprise = :id_entreprise");
+$requete->bindParam(":id_entreprise", $id_entreprise);
+$requete->execute();
+
+$info_entreprise = $requete->fetch(PDO::FETCH_ASSOC);
+
+
+$nom_entreprise = $info_entreprise['nom_entreprise'];
+$prospects = [];
 
 try {
     $sql = "SELECT prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, statut_prospect 
@@ -58,7 +64,7 @@ try {
     </header>
   <div class="wrapper-section">
     <div class="div-1">
-      <h1 class="heading-3">Tableau de bord - AVA</h1>
+      <h1 class="heading-3">Tableau de bord - <?php echo ($nom_entreprise); ?></h1>
       <form class="div-block-televerser" id="upload-form">
         <input type="file" id="csv-file" accept=".csv" />
         <button type="button" onclick="handleFileUpload()"> Téleverser </button>
