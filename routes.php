@@ -28,6 +28,7 @@ get('/infos_clients.php', '/infos_clients.php');
 
 get('/api/infos_clients/$id', '/api/get_infos_clients.php');
 
-any('/404','/404.php');
+delete('/api/delete_prospect/$id', '/api/delete_prospect.php');
 
+any('/404','/404.php');
 ?>

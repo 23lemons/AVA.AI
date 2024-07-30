@@ -533,3 +533,66 @@ header .login-btn:hover {
     text-align: center;
     padding: 20px 0;
 }
+
+.table-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-cell a {
+  margin-right: 10px;
+}
+
+.table-cell a:last-child {
+  margin-right: 0;
+}
+
+.link-block-12, .link-block-10 {
+  display: inline-block;
+}
+
+.table-action-icon, .table-action-icon-2 {
+  width: 22px;
+}
+
+.table-action-icon-2.x {
+  width: 16px;
+}
+
+/* Ajoutez ceci à votre fichier dashboard.css */
+.status-interesse {
+  background-color: green;
+  color: white;
+}
+
+.status-attente {
+  background-color: grey;
+  color: white;
+}
+
+.status-pas-interesse {
+  background-color: red;
+  color: white;
+}
+
+/* Ajoutez ceci à votre fichier dashboard.css */
+.status-circle {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-interesse {
+  background-color: green;
+}
+
+.status-attente {
+  background-color: grey;
+}
+
+.status-pas-interesse {
+  background-color: red;
+}
