@@ -159,6 +159,7 @@ function deleteProspect(id) {
     }
 }
 </script>
+<script src="script_csvUpload.js"></script> 
 
 </body>
 </html>
