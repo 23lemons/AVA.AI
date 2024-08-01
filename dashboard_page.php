@@ -1,24 +1,26 @@
 <?php 
 include("./config.php");
 
-$username_entreprise = $_SESSION["user_loggedin"];
 
-$requete = $conn->prepare("SELECT id_entreprise FROM Entreprise WHERE username_entreprise = :user");
-$requete->bindParam(":user", $username_entreprise);
-$requete->execute();
+// Vérifie si la variable de session 'user_loggedin' est définie avant de l'utiliser
+if (isset($_SESSION["user_loggedin"])) {
+    $username_entreprise = $_SESSION["user_loggedin"];
+    
+    $requete = $conn->prepare("SELECT id_entreprise FROM Entreprise WHERE username_entreprise = :user");
+    $requete->bindParam(":user", $username_entreprise);
+    $requete->execute();
 
-$id = $requete->fetch(PDO::FETCH_ASSOC);
-$id = $id["id_entreprise"];
+    $id = $requete->fetch(PDO::FETCH_ASSOC);
+    $id = $id["id_entreprise"];
 
+    $requete2 = $conn->prepare("SELECT nom_entreprise FROM Infos_Entreprise WHERE id_entreprise = :id");
+    $requete2->bindParam(":id", $id);
+    $requete2->execute();
 
-$requete2 = $conn->prepare("SELECT nom_entreprise FROM Infos_Entreprise WHERE id_entreprise = :id");
-$requete2->bindParam(":id", $id);
-$requete2->execute();
-
-$nom_entreprise = $requete2->fetch(PDO::FETCH_ASSOC); // Récupère le résultat sous forme de tableau associatif
-$nom_entreprise = $nom_entreprise['nom_entreprise']; // Accède à la valeur de 'nom_entreprise'
+    $nom_entreprise = $requete2->fetch(PDO::FETCH_ASSOC); // Récupère le résultat sous forme de tableau associatif
+    $nom_entreprise = $nom_entreprise['nom_entreprise']; // Accède à la valeur de 'nom_entreprise'
+} 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -31,12 +33,14 @@ $nom_entreprise = $nom_entreprise['nom_entreprise']; // Accède à la valeur de 
 <body>
 <header>
     <nav>
-        <div class="logo">
-            <img src="images/Capture d’écran 2024-07-16 101521.png" alt="Logo AVA" style="width: 100px; height: auto;">
+    <div class="logo">
+            <a href="landing_page.php">
+                <img src="images/Capture d’écran 2024-07-16 101521.png" alt="Logo AVA" style="width: 100px; height: auto;">
+            </a>
         </div>
         <div class="nav-items">
             <ul>
-                <li><a href="landing_page.php">Accueil</a></li>         
+                <li><a href="landing_page.php?logout=true">Deconnexion</a></li>         
             </ul>
         </div>
     </nav>
@@ -44,7 +48,7 @@ $nom_entreprise = $nom_entreprise['nom_entreprise']; // Accède à la valeur de 
 <main>
     <div class="wrapper-section">
         <div class="div-1">
-            <h1 class="heading-3"><?php echo $nom_entreprise?></h1>
+            <h1 class="heading-3">Bienvenue : <?php echo htmlspecialchars($nom_entreprise); ?></h1>
             <form class="div-block-televerser" id="upload-form">
                 <input type="file" id="csv-file" accept=".csv" />
                 <button type="button" onclick="handleFileUpload()">Téléverser</button>
@@ -286,4 +290,3 @@ function processCSV(csvData) {
 
 </body>
 </html>
-

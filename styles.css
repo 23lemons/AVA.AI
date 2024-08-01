@@ -32,12 +32,6 @@ body {
     animation: slideIn 1s ease-out;
 }
 
-.erreur{
-
-    z-index: 999;
-    background-color: red;
-}
-
 .left-section {
     background: linear-gradient(to bottom, #800080, #0000ff);
     color: white;
@@ -147,6 +141,14 @@ textarea {
 .btn:hover {
     background: linear-gradient(45deg, #c600ff, #6a00ff);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.erreur {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border-radius: 8px;
 }
 
 .image-container {
