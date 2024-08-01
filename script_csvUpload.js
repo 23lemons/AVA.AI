@@ -41,35 +41,81 @@ function handleFileUpload() {
             const row = document.createElement('div');
             row.className = 'table-row';
             row.innerHTML = `
-                <div class="div-block-406 _2"></div>
-                <div class="table-box">
-                    <div class="table-cell">${entryData.ID}</div>
-                </div>
-                <div class="table-box">
-                    <div class="table-cell">${entryData.Nom}</div>
-                </div>
-                <div class="table-box">
-                    <div class="table-cell">${entryData['Num. Téléphone']}</div>
-                </div>
-                <div class="table-box action">
-                    <div class="table-cell">
-                        <span class="status-circle status-pas-interesse"></span>
-                        ${entryData.Statut}
-                    </div>
-                </div>
-                <div class="table-box action">
-                    <div class="table-cell">
-                        <a href="#" class="link-block-12 w-inline-block">
-                            <img src="images/crayon_modifier.svg" alt="" class="table-action-icon">
-                        </a>
-                        <a href="#" class="link-block-10 w-inline-block">
-                            <img src="images/fermer_X_rouge.svg" alt="" class="table-action-icon-2 x">
-                        </a>
-                    </div>
-                </div>
-            `;
+                                <div class="div-block-406 _2"></div>
+                                <div class="table-box">
+                                    <div class="table-cell">${prospect.id_prospect}</div>
+                                </div>
+                                <div class="table-box">
+                                    <div class="table-cell">${prospect.prenom_prospect} ${prospect.nom_prospect}</div>
+                                </div>
+                                <div class="table-box">
+                                    <div class="table-cell">${prospect.num_tel_prospect}</div>
+                                </div>
+                                <div class="table-box action">
+                                    <div class="table-cell">
+                                        <span class="status-circle ${statusClass}"></span>
+                                        ${prospect.statut_prospect}
+                                    </div>
+                                </div>
+                                <div class="table-box action">
+                                    <div class="table-cell">
+                                        <a onclick="editProspect(this)" href="#" class="link-block-12 w-inline-block">
+                                            <img src="images/crayon_modifier.svg" alt="" class="table-action-icon">
+                                        </a>
+                                        <a onclick="deleteProspect(this)" href="#" class="link-block-10 w-inline-block">
+                                            <img src="images/fermer_X_rouge.svg" alt="" class="table-action-icon-2 x">
+                                        </a>
+                                    </div>
+                                </div>
+                            `;
+
             container.appendChild(row);
         });
     }
+
+    function editProspect(element) {
+        // Trouver la ligne correspondante
+        const row = element.closest('.table-row');
+        
+        // Extraire les données de la ligne
+        const id = row.querySelector('.table-cell').textContent.trim();
+        const name = row.querySelectorAll('.table-cell')[1].textContent.trim();
+        const phone = row.querySelectorAll('.table-cell')[2].textContent.trim();
+        
+        // Remplir les champs du formulaire de modification
+        document.getElementById('edit-row-id').value = id;
+        document.getElementById('edit-name').value = name;
+        document.getElementById('edit-phone').value = phone;
+        
+        // Afficher le modal de modification
+        document.getElementById('edit-modal').style.display = 'block';
+    }
+    
+    function closeModal() {
+        document.getElementById('edit-modal').style.display = 'none';
+    }
+    
+    document.getElementById('edit-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Récupérer les valeurs modifiées
+        const id = document.getElementById('edit-row-id').value;
+        const name = document.getElementById('edit-name').value;
+        const phone = document.getElementById('edit-phone').value;
+        
+        // Trouver la ligne correspondante
+        const row = [...document.querySelectorAll('.table-row')]
+            .find(row => row.querySelector('.table-cell').textContent.trim() === id);
+        
+        if (row) {
+            // Mettre à jour les cellules de la ligne
+            row.querySelectorAll('.table-cell')[1].textContent = name;
+            row.querySelectorAll('.table-cell')[2].textContent = phone;
+        }
+        
+        // Fermer le modal de modification
+        closeModal();
+    });
+    
     
         
