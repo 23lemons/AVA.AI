@@ -71,7 +71,7 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
             </div>
             <h1 class="sauce">Bienvenue chez AVA.AI</h1>
 	    <p class="sauce">Inscrivez vous pour accédez au futur</p></br>
-	    <p class="erreur"> <?php echo $erreur ?> </p>
+	    <p class="erreur"> <?php if($nbErreur){ echo $erreur;} ?> </p>
         </div>
         <div class="right-section">
             <h2>Inscription</h2>

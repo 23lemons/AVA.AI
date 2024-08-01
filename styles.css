@@ -32,6 +32,12 @@ body {
     animation: slideIn 1s ease-out;
 }
 
+.erreur{
+
+    z-index: 999;
+    background-color: red;
+}
+
 .left-section {
     background: linear-gradient(to bottom, #800080, #0000ff);
     color: white;
