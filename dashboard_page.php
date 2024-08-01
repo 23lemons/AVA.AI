@@ -100,7 +100,7 @@ if (isset($_SESSION["user_loggedin"])) {
 <script>
 // Chargement initial des prospects
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('/api/infos_clients/'$id)  // Assurez-vous de remplacer '1' par l'ID approprié ou configurez pour récupérer tous les prospects
+    fetch('/api/infos_clients') 
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
