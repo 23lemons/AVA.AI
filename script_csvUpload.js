@@ -1,4 +1,4 @@
-// Fonction de suppression des prospects
+/*// Fonction de suppression des prospects
 function deleteProspect(element) {
     if (confirm("Voulez-vous vraiment supprimer ce prospect ?")) {
         // Trouver la ligne (table-row) qui contient l'élément cliqué et la supprimer
@@ -56,18 +56,32 @@ document.getElementById('edit-form').addEventListener('submit', function(e) {
 
 // Fonction de téléversement des fichiers CSV
 function handleFileUpload() {
-    const fileInput = document.getElementById('csv-file'); // Recupere l'elt input de type file definit par son id
-    const file = fileInput.files[0]; // Recupere premier fichier selectionne par le user
+    const fileInput = document.getElementById('csv-file');
+    const file = fileInput.files[0];
 
-    if(file) { // Si un fichier a ete selectionne
-        const reader = new FileReader(); // Cree objet FileReader pour lire le fichier csv choisi
-        reader.onload = function(event) { // Fonction est appelee lorsque le fichier est lu
-            const csvData = event.target.result; // Recupere contenu du fichier csv
-            processCSV(csvData); // Appelle la fonction pocessCSV pour traiter
-        };
-        reader.readAsText(file); // Lit le fichier et renvoie sous une chaine de char
-    } else { 
-        alert("Veuillez sélectionner un fichier CSV."); // Affiche message d'alerte
+    if (file) {
+        const formData = new FormData();
+        formData.append('csvFile', file);
+
+        fetch('upload_csv.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Le fichier CSV a été téléversé et les données ont été ajoutées à la base de données.');
+                location.reload(); // Recharge la page pour afficher les nouveaux prospects
+            } else {
+                alert(`Erreur: ${data.message}`);
+            }
+        })
+        .catch(error => {
+            console.error('Erreur:', error);
+            alert(`Erreur lors du téléversement du fichier: ${error.message}`);
+        });
+    } else {
+        alert("Veuillez sélectionner un fichier");
     }
 }
 
@@ -116,4 +130,4 @@ function processCSV(csvData) {
             container.appendChild(row); // Ajoute la ligne au tableau
         }
     });
-}
+}*/
