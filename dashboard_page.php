@@ -44,7 +44,7 @@ $nom_entreprise = $nom_entreprise['nom_entreprise']; // Accède à la valeur de 
 </header>
 <main>
         <div class="div-1">
-            <h1 class="heading-3">Tableau de bord</h1>
+            <h1 class="heading-3"><?php echo $nom_entreprise?></h1>
             <form class="div-block-televerser" id="upload-form">
                 <input type="file" id="csv-file" accept=".csv" />
                 <button class="btn_televerser" type="button" onclick="handleFileUpload()">Téléverser</button>
@@ -117,7 +117,7 @@ document.getElementById('download-template').addEventListener('click', function(
 <script>
 // Chargement initial des prospects
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('/api/infos_clients/1')  // Assurez-vous de remplacer '1' par l'ID approprié ou configurez pour récupérer tous les prospects
+    fetch('/api/infos_clients')  // Assurez-vous de remplacer '1' par l'ID approprié ou configurez pour récupérer tous les prospects
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
