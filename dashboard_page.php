@@ -163,27 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 });
 
-// Fonction de suppression des prospects
-function deleteProspect(element) {
-    if (confirm("Voulez-vous vraiment supprimer ce prospect ?")) {
-     
-        const params = new URLSearchParams(window.location.search);
-        const id = params.get('id');
-        console.log("Deleting prospect with URL:", id); // Ajoutez ce log pour vérifier l'URL
-        fetch('/api/delete_prospect/' + id) 
-        
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(`Prospect ${id} supprimé avec succès`);
-                location.reload(); // Recharger la page pour mettre à jour la liste des prospects
-            } else { 
-                alert(`Erreur lors de la suppression du prospect: ${data.error}`);
-            }
-        })
-    }
-}
-
 
 </script>
 
