@@ -1,3 +1,25 @@
+<?php 
+include("./config.php");
+
+$username_entreprise = $_SESSION["user_loggedin"];
+
+$requete = $conn->prepare("SELECT id_entreprise FROM Entreprise WHERE username_entreprise = :user");
+$requete->bindParam(":user", $username_entreprise);
+$requete->execute();
+
+$id = $requete->fetch(PDO::FETCH_ASSOC);
+$id = $id["id_entreprise"];
+
+
+$requete2 = $conn->prepare("SELECT nom_entreprise FROM Infos_Entreprise WHERE id_entreprise = :id");
+$requete2->bindParam(":id", $id);
+$requete2->execute();
+
+$nom_entreprise = $requete2->fetch(PDO::FETCH_ASSOC); // Récupère le résultat sous forme de tableau associatif
+$nom_entreprise = $nom_entreprise['nom_entreprise']; // Accède à la valeur de 'nom_entreprise'
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -22,7 +44,7 @@
 <main>
     <div class="wrapper-section">
         <div class="div-1">
-            <h1 class="heading-3">Tableau de bord</h1>
+            <h1 class="heading-3"><?php echo $nom_entreprise; ?></h1>
             <form class="div-block-televerser" id="upload-form">
                 <input type="file" id="csv-file" accept=".csv" />
                 <button type="button" onclick="handleFileUpload()">Téléverser</button>
@@ -57,7 +79,7 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('/api/infos_clients/1')  // Assurez-vous de remplacer '1' par l'ID approprié ou configurez pour récupérer tous les prospects
+    fetch('/api/infos_clients')  
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -133,31 +155,25 @@ function editProspect(id) {
 function deleteProspect(id) {
     // Implémentez la logique de suppression
     if (confirm("Voulez-vous vraiment supprimer ce prospect ?")) {
-        const url = `/api/delete_prospect.php/`+id;
-        console.log("Deleting prospect with URL:", url); // Ajoutez ce log pour vérifier l'URL
-        fetch(url, {
-            method: 'DELETE'
-        })
-        .then(response => {
-            if (!response.ok) {
-                return response.text().then(text => { throw new Error(text); });
-            }
-            return response.json();
-        })
+     
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        console.log("Deleting prospect with URL:", id); // Ajoutez ce log pour vérifier l'URL
+        fetch('/api/delete_prospect/' + id) 
+        
+        .then(response => response.json())
         .then(data => {
             if (data.success) {
                 alert(`Prospect ${id} supprimé avec succès`);
                 location.reload(); // Recharger la page pour mettre à jour la liste des prospects
-            } else {
+            } else { 
                 alert(`Erreur lors de la suppression du prospect: ${data.error}`);
             }
         })
-        .catch(error => {
-            console.error('Erreur:', error);
-            alert(`Erreur lors de la suppression du prospect: ${error.message}`);
-        });
     }
 }
+
+
 </script>
 <script src="script_csvUpload.js"></script> 
 
