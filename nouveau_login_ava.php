@@ -5,10 +5,12 @@ $erreur = "";
 $nbErreur = 0;
 $nom_utilisateur = "";
 
+
 if (isset($_SESSION['user_loggedin'])) {
     header('Location: dashboard_page.php'); // Remplacer par le chemin de la page principale
     exit();
 }
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom_utilisateur = $_POST['username'];

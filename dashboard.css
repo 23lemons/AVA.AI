@@ -1,6 +1,17 @@
+html, body {
+  height: 100%; /* Assurez-vous que le corps et le HTML occupent 100% de la hauteur de la fenêtre */
+  margin: 0;
+  padding: 0;
+}
+
+
 body {
-  margin: 0px;
-  padding: 0px;
+  display: flex;
+  flex-direction: column; /* Disposer les éléments en colonne */
+}
+
+main {
+  flex: 1; /* Permet à l'élément main de prendre tout l'espace disponible entre l'en-tête et le pied de page */
 }
 
 .div-block-412 {
@@ -531,15 +542,30 @@ header .login-btn:hover {
     .scroll-table-content {
       margin-right: 30px;
     }
-  }
-
-  footer {
+    footer {
+    display: flex;
     background: linear-gradient(90deg, rgba(0,123,255,1) 0%, rgba(255,0,150,1) 100%);
     color: #fff;
     text-align: center;
     padding: 20px 0;
+    margin-top: auto; /* Pousse le footer vers le bas */
 }
-
+  }
+  footer {
+    display: flex;
+    background: linear-gradient(90deg, rgba(0,123,255,1) 0%, rgba(255,0,150,1) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto; /* Pousse le footer vers le bas */
+    justify-content: center; /* Centre le contenu horizontalement */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Oxygen, Fira Sans, Droid Sans, sans-serif; /* Applique le même style de police que les autres textes */
+  }
+  
+  footer p {
+    margin: 0; /* Évite les marges par défaut du paragraphe */
+    font-size: 1em; /* Assure une taille de police uniforme */
+  }
 .table-cell {
   display: flex;
   align-items: center;

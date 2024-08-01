@@ -19,19 +19,19 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
     $requete->execute();
 
     if($requete->fetch()){
-        $erreur = "Nom d'utilisateur existe déjà";
+        $erreur = $erreur . "Nom d'utilisateur existe déjà\n";
         $nbErreur++;
     }
 
     // VERIFICATION DE LA LONGUEUR DU PASSWORD   
     else if(strlen($_POST["password"]) < 8){
-        $erreur = "Le mot de passe doit comprendre au moins 8 caractères";
+        $erreur = $erreur . "Le mot de passe doit comprendre au moins 8 caractères\n";
         $nbErreur++;
     }
 
     // VERIFICATION DE LA SIMILARITÉ DU PASSWORD 
     else if($_POST["password"] != $_POST["confirm_password"]){
-        $erreur = "Les deux mots de passe ne sont pas pareils.";
+        $erreur = $erreur . "Les deux mots de passe ne sont pas pareils\n";
         $nbErreur++;
  
    }
@@ -54,7 +54,6 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -65,13 +64,12 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
 </head>
 <body>
     <div class="container">
-    <div class="left-section">
+        <div class="left-section">
             <div class="logo">
                 <img src="images/AVALOGOBLANC.png" alt="Votre Logo" />
             </div>
             <h1 class="sauce">Bienvenue chez AVA.AI</h1>
-	    <p class="sauce">Inscrivez vous pour accédez au futur</p></br>
-	    <p class="erreur"> <?php if($nbErreur){ echo $erreur;} ?> </p>
+            <p class="sauce">Inscrivez vous pour accédez au futur</p>
         </div>
         <div class="right-section">
             <h2>Inscription</h2>
@@ -93,6 +91,7 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
                     <input type="password" id="confirm_password" name="confirm_password" required>
                 </div>
                 <button type="submit" class="btn">Suivant</button>
+                <p class="erreur"> <?php if($nbErreur){ echo $erreur;} ?> </p>
             </form>
         </div>
     </div>

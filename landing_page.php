@@ -1,3 +1,19 @@
+<?php 
+require_once './config.php';
+
+// Vérification de la déconnexion
+
+if (isset($_GET['logout'])) {
+    unset($_SESSION["user_loggedin"]);
+    session_destroy();
+    header("Location: landing_page.php");
+    exit();
+
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
