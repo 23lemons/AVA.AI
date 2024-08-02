@@ -49,6 +49,7 @@ if (isset($_SESSION["user_loggedin"])) {
     <div class="wrapper-section">
         <div class="div-1">
             <h1 class="heading-3">Bienvenue : <?php echo htmlspecialchars($nom_entreprise); ?></h1>
+            <button type="button" onclick="lancerCampagne()">Lancer une campagne</button>
             <form class="div-block-televerser" id="upload-form">
                 <input type="file" id="csv-file" accept=".csv" />
                 <button type="button" onclick="handleFileUpload()">Téléverser</button>
@@ -286,6 +287,44 @@ function processCSV(csvData) {
             container.appendChild(row); // Ajoute la ligne au tableau
         }
     });
+}
+
+function lancerCampagne() {
+    fetch('/api/infos_clients') 
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                throw new Error(`Erreur: ${data.error}`);
+            } else if (data.length === 0) {
+                console.log('Aucun prospect trouvé');
+            } else {
+                data.forEach(prospect => {
+                    fetch(`/api/contacter_prospect/${prospect.id_prospect}`, {
+                        method: "POST"
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erreur en contactant le prospect');
+                        }
+                        return response.json();
+                    })
+                    .then(result => {
+                        console.log(`Prospect contacté`, result);
+                    })
+                    .catch(error => {
+                        console.error(`Erreur en contactant le prospect`, error.message);
+                    });
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Ereur infos du client:', error.message);
+        });
 }
 </script>
 
