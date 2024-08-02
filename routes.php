@@ -29,6 +29,9 @@ get('/infos_clients.php', '/infos_clients.php');
 post('/api/contacter_prospect/$id_prospect', '/api/contacter_prospect.php');
 post('/api/contacter_prospect/$id_prospect', '/api/contacter_prospect.php');
 
+post('/api/update_database', '/api/update_database.php');
+get('/api/update_database', '/api/update_database.php');
+
 get('/api/infos_clients', '/api/get_infos_clients.php');
 
 delete('/api/delete_prospect/$id', '/api/delete_prospect.php');
