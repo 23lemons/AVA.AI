@@ -22,11 +22,8 @@ any('/', '/landing_page.php');
 
 get('/dashboard_page.php', '/dashboard_page.php');
 
-get('/infos_clients.php', '/infos_clients.php');
-
 //api
 
-post('/api/contacter_prospect/$id_prospect', '/api/contacter_prospect.php');
 post('/api/contacter_prospect/$id_prospect', '/api/contacter_prospect.php');
 
 post('/api/update_database', '/api/update_database.php');

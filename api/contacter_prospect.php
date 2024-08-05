@@ -1,5 +1,6 @@
 <?php
 include("./config.php");
+require_once 'openai_api.php';
 
  if (!isset($_SESSION["user_loggedin"])) {
      echo json_encode(["error" => "Utilisateur non connecté"]);
@@ -65,8 +66,8 @@ $price_to_sell = $infos_entreprise["prix_service"];
 $service = $infos_entreprise["description_service"];
 $company_desc = $infos_entreprise["description_entreprise"];
 
-$message_body = "Bonjour $prenom_prospect, nous sommes $company_name\n Description de notre compagnie: $company_desc\n Nous offrons ce service: $service. pour le prix raisonnable de: $price_to_sell. Seriez-vous intéressés? répondez par OUI ou NON.";
-
+$prompt =  "Créez un message sous le nom de Ava, pour un potentiel client nommé $prenom_prospect afin de présenter notre entreprise $company_name. La description de l'entreprise est : $company_desc. Nous offrons le service suivant : $service, au prix de $price_to_sell. Le message doit être professionnel et encourager le prospect à répondre OUI ou NON.";
+$message_body = genererMessage($prompt);
 $url = 'https://api.twilio.com/2010-04-01/Accounts/' . $account_sid . '/Messages.json';
 
 $data = [
@@ -88,7 +89,5 @@ curl_close($x);
 
 echo $response;
 }
-
-
 
 ?>

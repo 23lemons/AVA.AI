@@ -26,3 +26,6 @@ VALUES ('Antoine', 'Boucher', '4384918831', 'antoine@example.com', @id_entrepris
 
 INSERT INTO Prospects (prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, id_entreprise, statut_prospect)
 VALUES ('Test', 'Test', '5144431818', 'souhayl@example.com', @id_entreprise, 'Intéressé');
+
+INSERT INTO Prospects (prenom_prospect, nom_prospect, num_tel_prospect, courriel_prospect, id_entreprise, statut_prospect)
+VALUES ('Aziz', 'TestOpenAi', '5144661514', 'azizghazali777@gmail.com', @id_entreprise, 'En attente');

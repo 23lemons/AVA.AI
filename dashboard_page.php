@@ -1,6 +1,11 @@
 <?php 
 include("./config.php");
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 
 // Vérifie si la variable de session 'user_loggedin' est définie avant de l'utiliser
 if (isset($_SESSION["user_loggedin"])) {
@@ -311,13 +316,13 @@ function lancerCampagne() {
                         if (!response.ok) {
                             throw new Error('Erreur en contactant le prospect');
                         }
-                        return response.json();
+                        //return response.json();
                     })
                     .then(result => {
                         console.log(`Prospect contacté`, result);
                     })
                     .catch(error => {
-                        console.error(`Erreur en contactant le prospect`, error.message);
+                        console.error(`Erreur potentielle en contactant le prospect : ${prospect.id_prospect}`, error.message);
                     });
                 });
             }
