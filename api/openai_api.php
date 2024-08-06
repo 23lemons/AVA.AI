@@ -14,7 +14,7 @@ function genererMessage($prompt) {
             ["role" => "system", "content" => "You are a helpful assistant."],
             ["role" => "user", "content" => $prompt]
         ],
-        "max_tokens" => 150
+        "max_tokens" => 250
     ];
 
     $ch = curl_init();
@@ -55,10 +55,14 @@ function genererMessage($prompt) {
 
     // Check if the message was generated
     if (!isset($responseData['choices'][0]['message']['content'])) {
-        return json_encode(["message" => "Pas de réponse générée"]);
+        return json_encode(["message" => "Pas de réponse générée"], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
-    // Return the generated text
-    return json_encode(["message" => $responseData['choices'][0]['message']['content']]);
+    $messageContent = str_replace("\n"," ", $responseData['choices'][0]['message']['content']);
+
+    //$array = ["message" => $messageContent]; // j'ai enlever a cause du "message" : Objet : type shiiiiii
+
+    // Return the generated text with the correct formatting
+    return json_encode($messageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 ?>
