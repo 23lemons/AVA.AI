@@ -5,17 +5,13 @@ require_once ('openai_api.php');
 
 
 
-//$from = $_POST['From']; // Sender's phone number
-//$body = $_POST['Body']; // Message content
+$from = $_POST['From']; // Sender's phone number
+$body = $_POST['Body']; // Message content
 
-$body = "non";
-
-//$phoneNumberWithoutCountryCode = ltrim($from, '+1');
-
-$phoneNumberWithoutCountryCode = "5148263316";
+$phoneNumberWithoutCountryCode = ltrim($from, '+1');
 
 
-$requete = $conn->prepare("SELECT id_entreprise FROM Prospects WHERE num_tel_prospect = :numTel");
+$requete = $conn->prepare("SELECT id_entreprise, id_prospect FROM Prospects WHERE num_tel_prospect = :numTel");
 $requete->bindParam(":numTel", $phoneNumberWithoutCountryCode);
 $requete->execute();
 
@@ -26,6 +22,7 @@ if (count($id_entreprise) > 0) {
     // Process the first item in the array
     $company_id = $id_entreprise[0];
     $id = $company_id["id_entreprise"];
+    $id_prospect = $company_id["id_prospect"];
 }
 
 $requete2 = $conn->prepare("SELECT nom_entreprise, description_entreprise, description_service, prix_service
@@ -38,15 +35,12 @@ if (count($entreprises) > 0) {
     // Process the first item in the array
     $entreprise = $entreprises[0];
 
-    
 }
 
 $company_name = $entreprise["nom_entreprise"]; //nom de l'entreprise
 $price_to_sell = $entreprise["prix_service"];
 $service = $entreprise["description_service"];
 $company_desc = $entreprise["description_entreprise"];
-
-
 
 $prompt = "voici un message d'un prospect, interprete s'il est interesse ou non. S'il est interesse repond SEULEMENT avec 'OUI',
  s'il n'est pas interesse repond SEULEMENT avec 'NON',
@@ -73,39 +67,36 @@ if($reponseGPT == "OUI"){
     repondre_prospect($reponseGPT);
 }
 
-
-
 // Process the message and update your database
 // Example: Update database based on the reply
 
-
-try {
-
-    // Update the database with the determined status
-    $stmt = $conn->prepare("UPDATE Prospects SET statut_prospect = :statut WHERE num_tel_prospect = :phone_number");
-    $stmt->bindParam(':statut', $statut); // Bind the status parameter
-    $stmt->bindParam(':phone_number', $phoneNumberWithoutCountryCode); // Bind the phone number parameter
-    $stmt->execute();
-
-} catch (PDOException $e) {
-    // Handle database errors
-    http_response_code(500);
-    echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
-} catch (Exception $e) {
-    // Handle other errors
-    http_response_code(500);
-    echo json_encode(['error' => 'Unexpected error: ' . $e->getMessage()]);
-}
-
 function repondre_prospect($message_ou_prompt){
 
+    $to = "+1" . $phoneNumberWithoutCountryCode; //numero a contacter
 
-
-
-
-
-
-}
-
-
+    $account_sid = ''; // change to my twilio sid
+    $auth_token = ''; // my twilio auth token
+    $from = ''; //numero twilio
+    
+    $url = 'https://api.twilio.com/2010-04-01/Accounts/' . $account_sid . '/Messages.json';
+    
+    $data = [
+        'To' => $to,
+        'From' => $from,
+        'Body' => $message_ou_prompt
+    ];
+    
+    $post = http_build_query($data);
+    $x = curl_init($url);
+    curl_setopt($x, CURLOPT_POST, true);
+    curl_setopt($x, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($x, CURLOPT_USERPWD, "$account_sid:$auth_token");
+    curl_setopt($x, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_setopt($x, CURLOPT_POSTFIELDS, $post);
+    curl_setopt($x, CURLOPT_SSL_VERIFYPEER, false);
+    $response = curl_exec($x);
+    curl_close($x);
+    
+    echo $response;
+    }
 ?>
