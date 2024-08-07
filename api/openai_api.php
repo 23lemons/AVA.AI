@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 function genererMessage($prompt) {
     $apiKey = '';
-    $url = '';
+    $url = 'https://api.openai.com/v1/chat/completions';
     
     $data = [
         "model" => "gpt-4",

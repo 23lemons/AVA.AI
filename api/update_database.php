@@ -1,6 +1,7 @@
 <?php
 
 include("./config.php");
+require_once 'repondre_prospect.php';
 
 //use Twilio\TwiML\MessagingResponse;
 
@@ -14,8 +15,6 @@ include("./config.php");
 
 $from = $_POST['From']; // Sender's phone number
 $body = $_POST['Body']; // Message content
-
-
 
 $phoneNumberWithoutCountryCode = ltrim($from, '+1');
 
@@ -38,25 +37,11 @@ try {
     $stmt->bindParam(':statut', $statut); // Bind the status parameter
     $stmt->bindParam(':phone_number', $phoneNumberWithoutCountryCode); // Bind the phone number parameter
     $stmt->execute();
-
-    // Respond to the message
-    // $response = new MessagingResponse();
-
-    // if ($statut == "Intéressé") {
-
-    //     $response->message('Merci pour votre réponse, nous vous contacterons dans un faible délai.');
-    // } else if ($statut == "Pas intéressé") {
-
-    //     $response->message('Pas de problème! Merci pour votre réponse.');
-    // } else {
-
-    //     $response->message('Merci pour votre réponse.');
-    // }
     
+    // Output the response
+    header('Content-Type: text/xml');
+    echo $response;
 
-    // // Output the response
-    // header('Content-Type: text/xml');
-    // echo $response;
 } catch (PDOException $e) {
     // Handle database errors
     http_response_code(500);
@@ -64,5 +49,5 @@ try {
 } catch (Exception $e) {
     // Handle other errors
     http_response_code(500);
-    echo json_encode(['error' => 'Unexpected error: ' . $e->getMessage()]);
+    echo json_encode(['error' => 'Unexpected error: ' . $e->getMessage()]);a
 }
