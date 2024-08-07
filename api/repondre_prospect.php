@@ -68,8 +68,17 @@ if($reponseGPT == "OUI"){
     repondre_prospect($reponseGPT);
 }
 
-// Process the message and update your database
-// Example: Update database based on the reply
+    // Update the database with the determined status
+    $stmt = $conn->prepare("UPDATE Prospects SET statut_prospect = :statut WHERE num_tel_prospect = :phone_number");
+    $stmt->bindParam(':statut', $statut); // Bind the status parameter
+    $stmt->bindParam(':phone_number', $phoneNumberWithoutCountryCode); // Bind the phone number parameter
+    $stmt->execute();
+    
+    // Output the response
+    header('Content-Type: text/xml');
+    echo $response;
+
+
 
 function repondre_prospect($message_ou_prompt){
 
