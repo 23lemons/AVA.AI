@@ -56,11 +56,12 @@ $reponseGPT = json_decode($reponseGPT);
 if($reponseGPT == "OUI"){
 
     $statut = "Intéressé";
+    repondre_prospect("Merci, un représentant de la compagnie vous contactera dans les plus bref délais.");
 
 } else if ($reponseGPT == "NON"){
 
     $statut = "Pas intéressé";
-
+    repondre_prospect("Merci pour votre réponse");
 } else {
 
     $statut = "En attente";
