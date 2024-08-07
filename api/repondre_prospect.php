@@ -11,6 +11,7 @@ $body = $_POST['Body']; // Message content
 $phoneNumberWithoutCountryCode = ltrim($from, '+1');
 
 
+
 $requete = $conn->prepare("SELECT id_entreprise, id_prospect FROM Prospects WHERE num_tel_prospect = :numTel");
 $requete->bindParam(":numTel", $phoneNumberWithoutCountryCode);
 $requete->execute();
@@ -57,22 +58,32 @@ if($reponseGPT == "OUI"){
 
     $statut = "Intéressé";
 
+    repondre_prospect("Merci, un representant de la compagnie vous contactera dans les plus brefs délais.", $phoneNumberWithoutCountryCode);
+
 } else if ($reponseGPT == "NON"){
 
     $statut = "Pas intéressé";
 
+    repondre_prospect("Merci pour votre réponse.", $phoneNumberWithoutCountryCode);
+
 } else {
 
     $statut = "En attente";
-    repondre_prospect($reponseGPT);
+    repondre_prospect($reponseGPT, $phoneNumberWithoutCountryCode);
 }
 
 // Process the message and update your database
 // Example: Update database based on the reply
+$stmt = $conn->prepare("UPDATE Prospects SET statut_prospect = :statut WHERE num_tel_prospect = :phone_number");
+$stmt->bindParam(':statut', $statut); // Bind the status parameter
+$stmt->bindParam(':phone_number', $phoneNumberWithoutCountryCode); // Bind the phone number parameter
+$stmt->execute();
 
-function repondre_prospect($message_ou_prompt){
+function repondre_prospect($message_ou_prompt, $phoneNumberWithoutCountryCode){
 
     $to = "+1" . $phoneNumberWithoutCountryCode; //numero a contacter
+
+
 
     $account_sid = ''; // change to my twilio sid
     $auth_token = ''; // my twilio auth token
