@@ -24,6 +24,9 @@ get('/dashboard_page.php', '/dashboard_page.php');
 
 //api
 
+post('/api/repondre_prospect', '/api/repondre_prospect.php');
+get('/api/repondre_prospect', '/api/repondre_prospect.php');
+
 post('/api/contacter_prospect/$id_prospect', '/api/contacter_prospect.php');
 
 post('/api/update_database', '/api/update_database.php');
