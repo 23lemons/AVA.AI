@@ -5,10 +5,15 @@ require_once ('openai_api.php');
 
 
 
-$from = $_POST['From']; // Sender's phone number
-$body = $_POST['Body']; // Message content
+//$from = $_POST['From']; // Sender's phone number
+//$body = $_POST['Body']; // Message content
 
-$phoneNumberWithoutCountryCode = ltrim($from, '+1');
+$body = "non";
+
+//$phoneNumberWithoutCountryCode = ltrim($from, '+1');
+
+$phoneNumberWithoutCountryCode = "5148263316";
+
 
 $requete = $conn->prepare("SELECT id_entreprise FROM Prospects WHERE num_tel_prospect = :numTel");
 $requete->bindParam(":numTel", $phoneNumberWithoutCountryCode);
@@ -20,22 +25,32 @@ $id_entreprise = $requete->fetchAll(PDO::FETCH_ASSOC);
 if (count($id_entreprise) > 0) {
     // Process the first item in the array
     $company_id = $id_entreprise[0];
+    $id = $company_id["id_entreprise"];
 }
 
 $requete2 = $conn->prepare("SELECT nom_entreprise, description_entreprise, description_service, prix_service
 FROM Infos_Entreprise WHERE id_entreprise = :id");
-$requete2->bindParam(":id", $id_entreprise, PDO::PARAM_INT);
+$requete2->bindParam(":id", $id, PDO::PARAM_INT);
 $requete2->execute();
-$entreprises = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$entreprises = $requete2->fetchAll(PDO::FETCH_ASSOC);
 
-$company_name = $entreprises["nom_entreprise"]; //nom de l'entreprise
-$price_to_sell = $entreprises["prix_service"];
-$service = $entreprises["description_service"];
-$company_desc = $entreprises["description_entreprise"];
+if (count($entreprises) > 0) {
+    // Process the first item in the array
+    $entreprise = $entreprises[0];
+
+    
+}
+
+$company_name = $entreprise["nom_entreprise"]; //nom de l'entreprise
+$price_to_sell = $entreprise["prix_service"];
+$service = $entreprise["description_service"];
+$company_desc = $entreprise["description_entreprise"];
+
+
 
 $prompt = "voici un message d'un prospect, interprete s'il est interesse ou non. S'il est interesse repond SEULEMENT avec 'OUI',
  s'il n'est pas interesse repond SEULEMENT avec 'NON',
-  s'il nest pas certain repond a son messge avec les donnes de la compagnie:
+  s'il nest pas certain repond a son message en utilisant les donnes de la compagnie et demande lui s'il est intéressé:
    nom de la compagnie : $company_name, prix du service ou produit : $price_to_sell, la desciption du service ou produit vendu : $service,
 la description de l'entreprise qui vent le produit : $company_desc
    Voici le message du prospect: $body ";
@@ -79,7 +94,7 @@ try {
 } catch (Exception $e) {
     // Handle other errors
     http_response_code(500);
-    echo json_encode(['error' => 'Unexpected error: ' . $e->getMessage()]);a
+    echo json_encode(['error' => 'Unexpected error: ' . $e->getMessage()]);
 }
 
 function repondre_prospect($message_ou_prompt){
