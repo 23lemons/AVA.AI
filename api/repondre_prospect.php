@@ -8,8 +8,8 @@ require_once ('openai_api.php');
 $from = $_POST['From']; // Sender's phone number
 $body = $_POST['Body']; // Message content
 
-$phoneNumberWithoutCountryCode = ltrim($from, '+1');
 
+$phoneNumberWithoutCountryCode = ltrim($from, '+1');
 
 
 $requete = $conn->prepare("SELECT id_entreprise, id_prospect FROM Prospects WHERE num_tel_prospect = :numTel");
@@ -26,7 +26,7 @@ if (count($id_entreprise) > 0) {
     $id_prospect = $company_id["id_prospect"];
 }
 
-$requete2 = $conn->prepare("SELECT nom_entreprise, description_entreprise, description_service, prix_service
+$requete2 = $conn->prepare("SELECT nom_entreprise, description_entreprise, description_service, prix_service, num_tel_entreprise
 FROM Infos_Entreprise WHERE id_entreprise = :id");
 $requete2->bindParam(":id", $id, PDO::PARAM_INT);
 $requete2->execute();
@@ -42,12 +42,14 @@ $company_name = $entreprise["nom_entreprise"]; //nom de l'entreprise
 $price_to_sell = $entreprise["prix_service"];
 $service = $entreprise["description_service"];
 $company_desc = $entreprise["description_entreprise"];
+$company_phone = $entreprise["num_tel_entreprise"];
 
 $prompt = "voici un message d'un prospect, interprete s'il est interesse ou non. S'il est interesse repond SEULEMENT avec 'OUI',
  s'il n'est pas interesse repond SEULEMENT avec 'NON',
-  s'il nest pas certain repond a son message en utilisant les donnes de la compagnie et demande lui s'il est intéressé:
-   nom de la compagnie : $company_name, prix du service ou produit : $price_to_sell, la desciption du service ou produit vendu : $service,
-la description de l'entreprise qui vent le produit : $company_desc
+  s'il nest pas certain, repond a son message en utilisant les données de la compagnie et demande lui s'il est intéressé:
+   nom de la compagnie : $company_name, prix du service ou produit : $price_to_sell$, la desciption du service ou produit vendu : $service,
+la description de l'entreprise qui vent le produit : $company_desc, numero de téléphone: $company_phone.
+ Si les données sont insuffisantes pour repondre à la question, référez le prospect au numéro de téléphone. Assure toi de ne pas inventer de données.
    Voici le message du prospect: $body ";
 
 $reponseGPT = genererMessage($prompt);
@@ -78,9 +80,7 @@ if($reponseGPT == "OUI"){
     $stmt->bindParam(':phone_number', $phoneNumberWithoutCountryCode); // Bind the phone number parameter
     $stmt->execute();
     
-    // // Output the response
-    // header('Content-Type: text/xml');
-    // echo $response;
+  
 
 
 
