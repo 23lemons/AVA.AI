@@ -42,7 +42,7 @@ try {
     $id_entreprise = $entreprise['id_entreprise'] ?? null;
 
     if ($id_entreprise) {
-        $stmt = $conn->prepare("SELECT nom_entreprise, description_entreprise, description_service, prix_service
+        $stmt = $conn->prepare("SELECT nom_entreprise, description_entreprise, description_service
                                 FROM Infos_Entreprise WHERE id_entreprise = :id");
         $stmt->bindParam(":id", $id_entreprise, PDO::PARAM_INT);
         $stmt->execute();
@@ -62,11 +62,10 @@ $auth_token = ''; // my twilio auth token
 $from = ''; //numero twilio
 
 $company_name = $infos_entreprise["nom_entreprise"]; //nom de l'entreprise
-$price_to_sell = $infos_entreprise["prix_service"];
 $service = $infos_entreprise["description_service"];
 $company_desc = $infos_entreprise["description_entreprise"];
 
-$prompt =  "Créez un message sous le nom d' Ava, pour un potentiel client nommé $prenom_prospect afin de présenter notre entreprise $company_name. La description de l'entreprise est : $company_desc. Nous offrons le service suivant : $service, au prix de $price_to_sell $. Le message doit être professionnel et encourager le prospect à répondre OUI ou NON. Le message doit comporter moins de 250 caractères (tokens)";
+$prompt =  "Créez un message sous le nom d' Ava, pour un potentiel client nommé $prenom_prospect afin de présenter notre entreprise $company_name. La description de l'entreprise est : $company_desc. Nous offrons le service suivant : $service. Le message doit être professionnel et demander auclient s'il est intéressé. Le message doit comporter moins de 250 caractères (tokens)";
 $message_body = genererMessage($prompt);
 
 if(str_contains($message_body, "Erreur de l'API OpenAI:") || str_contains($message_body, "Pas de réponse générée")){
