@@ -249,47 +249,41 @@ function handleFileUpload() {
 
 // Fonction de traitement du fichier CSV
 function processCSV(csvData) {
-    const lines = csvData.split('\n'); // Separe les donnees de csv en lignes
-    const header = lines[0].split(','); // Separe les donnees de chaque ligne en colonnes
-    const container = document.getElementById('prospects-container'); // Recupere l'elt contenant les prospects
-    container.innerHTML = ''; // Vider le contenu actuel
+    const lines = csvData.split('\n'); // Split CSV data into lines
+    const header = lines[0].split(','); // Extract header columns
+    const container = document.getElementById('prospects-container');
 
-    lines.slice(1).forEach(line => { // Itère sur chaque ligne de donnees (sauf la premiere ligne)
-        const values = line.split(','); // Separe les colonnes de la ligne en valeurs
 
-        if (values.length === header.length) { // Vérifie si le nombre de valeurs correspond au nombre de colonnes
-            const row = document.createElement('div'); // Cree une div pour une nouvelle ligne dans le tableau
-            row.className = 'table-row'; // Definit la classe CSS pour la ligne
+    lines.slice(1).forEach(line => {
+        const values = line.split(','); // Split line into values
 
-            row.innerHTML = `
-                <div class="div-block-406 _2"></div>
-                <div class="table-box">
-                    <div class="table-cell">${values[0]}</div>
-                </div>
-                <div class="table-box">
-                    <div class="table-cell">${values[1]}</div>
-                </div>
-                <div class="table-box">
-                    <div class="table-cell">${values[2]}</div>
-                </div>
-                <div class="table-box action">
-                    <div class="table-cell">
-                        <span class="status-circle"></span>Inactif
-                    </div>
-                </div>
-                <div class="table-box action">
-                    <div class="table-cell">
-                        <a onclick="editProspect(this)" href="#" class="link-block-12 w-inline-block">
-                            <img src="images/crayon_modifier.svg" alt="" class="table-action-icon">
-                        </a>
-                        <a onclick="deleteProspect(this)" href="#" class="link-block-10 w-inline-block">
-                            <img src="images/fermer_X_rouge.svg" alt="" class="table-action-icon-2 x">
-                        </a>
-                    </div>
-                </div>
-            `;
+        if (values.length === header.length) {
+            const data = {
+                prenom_prospect: values[0],
+                nom_prospect: values[1],
+                num_tel_prospect: values[2],
+                courriel_prospect: values[3]
+            };
 
-            container.appendChild(row); // Ajoute la ligne au tableau
+            fetch(`/api/ajouter_prospect`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur en ajoutant le prospect');
+                }
+                return response.json(); 
+            })
+            .then(result => {
+                console.log(`Prospect ajouté:`, result);
+            })
+            .catch(error => {
+                console.error(`Erreur en ajoutant le prospect:`, error.message);
+            });
         }
     });
 }

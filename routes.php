@@ -36,4 +36,6 @@ get('/api/infos_clients', '/api/get_infos_clients.php');
 
 delete('/api/delete_prospect/$id', '/api/delete_prospect.php');
 
+post('/api/ajouter_prospect', '/api/ajouter_prospect.php');
+
 ?>
